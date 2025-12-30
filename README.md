@@ -20,3 +20,12 @@ Bit of research shows that the spinner is shadcn/ui. That means i'll be able to 
 I decided it's better to go down the shadcn/ui path sooner than later, so I added as many useful components as I could find using npx.
 
 I'll rewrite the detail loading page using shadcn and lucide now.
+
+Going to do the loading list page now as it can't be much harder than what I just did.
+
+First element of said page is the Hero which (obviously!) is the same as the actual landing page, so I'll build that as a component first so I can reuse it later.
+
+The separator also seems to be the same everywhere so I'll make that component.
+
+Same thing, footer I built in the detail loading page is the same everywhere so I'll write that component.
+
