@@ -8,3 +8,5 @@ Thus I have 5 pages: app/page, /loading-detail/page, /loading-list/page, /pokemo
 I begin by creating these pages with simple links between them in the first commit.
 
 I have two big elements to the website: the API and the figma design. Having used APIs before I imagine it won't be too much work so I will focus on figma first. I start with the pokemon detail page - loading state, as it seems to be the most empty.
+
+Having understood that figma is really just a top-down classifier for the design, I find that I just need to copy all the specs and write them up. I start by doing the design of the whole page followed by the four elements.
