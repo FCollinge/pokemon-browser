@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
+import Separator from '@/components/separator';
+import Footer from '@/components/footer';
 
 export default function LoadingDetailPage() {
   return (
@@ -36,33 +38,8 @@ export default function LoadingDetailPage() {
         <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
       </div>
 
-      <div style={{
-        width: '1440px',
-        height: '1px',
-        border: '1px solid #E4E4E7'
-      }}>
-      </div>
-
-      <div style={{
-        width: '1440px',
-        height: '216px',
-        background: '#FFFFFF',
-        borderTop: '1px solid black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <p style={{
-          fontFamily: 'Inter',
-          fontWeight: '600',
-          fontSize: '18px',
-          lineHeight: '28px',
-          textAlign: 'center',
-          color: '#181A1B'
-        }}>
-          Thank you for using Pokémon Browser!
-        </p>
-      </div>
+      <Separator />
+      <Footer />
     </div>
   );
 }

@@ -29,3 +29,4 @@ The separator also seems to be the same everywhere so I'll make that component.
 
 Same thing, footer I built in the detail loading page is the same everywhere so I'll write that component.
 
+Going to quickly fix the detail loading page to use the components we built
