@@ -6,3 +6,5 @@ The figma shows 6 different pages but the first two are the same with the only d
 Thus I have 5 pages: app/page, /loading-detail/page, /loading-list/page, /pokemon/[id]/page, /search/page
 
 I begin by creating these pages with simple links between them in the first commit.
+
+I have two big elements to the website: the API and the figma design. Having used APIs before I imagine it won't be too much work so I will focus on figma first. I start with the pokemon detail page - loading state, as it seems to be the most empty.
