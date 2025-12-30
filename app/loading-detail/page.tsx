@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
 
 export default function LoadingDetailPage() {
   return (
@@ -9,20 +10,19 @@ export default function LoadingDetailPage() {
         background: '#FFFFFF',
         borderBottom: '1px solid black',
         paddingLeft: '64px',
-        paddingRight: '64px'
+        paddingRight: '64px',
+        display: 'flex',
+        alignItems: 'center'
       }}>
-        <div style={{
-          width: '202px',
-          height: '32px',
+        <h1 style={{
           fontFamily: 'Inter',
           fontWeight: '600',
           fontSize: '24px',
           lineHeight: '32px',
-          letterSpacing: '-2.5%',
           color: '#181A1B'
         }}>
           Pokemon Browser
-        </div>
+        </h1>
       </div>
 
       <div style={{
@@ -33,20 +33,7 @@ export default function LoadingDetailPage() {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <div style={{
-          width: '76px',
-          height: '76px'
-        }}>
-          <div style={{
-            width: '57px',
-            height: '57px',
-            border: '1px solid #09090B',
-            position: 'relative',
-            top: '9.5px',
-            left: '9.5px'
-          }}>
-          </div>
-        </div>
+        <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
       </div>
 
       <div style={{
@@ -65,19 +52,16 @@ export default function LoadingDetailPage() {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <div style={{
-          width: '340px',
-          height: '28px',
+        <p style={{
           fontFamily: 'Inter',
           fontWeight: '600',
           fontSize: '18px',
           lineHeight: '28px',
-          letterSpacing: '0%',
           textAlign: 'center',
           color: '#181A1B'
         }}>
           Thank you for using Pokémon Browser!
-        </div>
+        </p>
       </div>
     </div>
   );

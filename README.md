@@ -17,4 +17,6 @@ That was considerably more difficult. I failed to get the spinner to work. Will 
 
 Bit of research shows that the spinner is shadcn/ui. That means i'll be able to build it in later, but I'll wait until I see what else I need to get from there (I imagine buttons, skeletons etc)
 
-I decided it's better to go down the shadcn/ui path sooner than later, so I added as many useful components as I could find using npx
+I decided it's better to go down the shadcn/ui path sooner than later, so I added as many useful components as I could find using npx.
+
+I'll rewrite the detail loading page using shadcn and lucide now.
