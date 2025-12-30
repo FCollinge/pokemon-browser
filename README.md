@@ -14,3 +14,5 @@ Having understood that figma is really just a top-down classifier for the design
 That was quite easy, I guess I can probably fly through the rest of this page.
 
 That was considerably more difficult. I failed to get the spinner to work. Will get back to it later.
+
+Bit of research shows that the spinner is shadcn/ui. That means i'll be able to build it in later, but I'll wait until I see what else I need to get from there (I imagine buttons, skeletons etc)
