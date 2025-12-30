@@ -24,7 +24,7 @@ export default function SearchResultsPage() {
       </div>
 
       <Separator />
-      <Footer />
+      <Footer height="215px" />
     </div>
   );
 }

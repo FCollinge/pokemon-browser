@@ -35,3 +35,6 @@ Some of the pages have a lot of levels of indentation so I'm going to do the sou
 
 I've changed my mind about the buttons because on the first page I decided to do it (search results) the buttons are inside of the body. Fortunately I can still hit Ctrl + Left arrow if ever I want to leave the page.
 
+So I noticed the search results page's footer is 215px instead of the 244px in my components.
+
+Fortunately I can rewrite the footer to accept the height as an argument and set my default to 244 and use 215 in the search results page

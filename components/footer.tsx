@@ -1,8 +1,8 @@
-export default function Footer() {
+export default function Footer({ height = '244px' }: { height?: string }) {
   return (
     <div style={{
       width: '1440px',
-      height: '216px',
+      height: height,
       background: '#FFFFFF',
       borderTop: '1px solid black',
       display: 'flex',
