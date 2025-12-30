@@ -1,18 +1,30 @@
-import Link from 'next/link';
+import Hero from '@/components/hero';
+import Separator from '@/components/separator';
+import Footer from '@/components/footer';
 
 export default function SearchResultsPage() {
   return (
-    <div>
-      <h1>Search Results</h1>
-      <Link href="/">Back to Home</Link>
-
-      <div>
-        <input type="text" placeholder="Search Pokemon"/>
+    <div style={{
+      width: '1440px',
+      height: '1216px',
+      gap: '48px',
+      background: '#FFFFFF'
+    }}>
+      <Hero />
+      <Separator />
+      
+      <div style={{
+        width: '1440px',
+        height: '563px',
+        gap: '48px',
+        paddingRight: '140px',
+        paddingLeft: '140px'
+      }}>
+        Body content here
       </div>
 
-      <div>
-        <Link href="/pokemon/1">Bulbasaur</Link>
-      </div>
+      <Separator />
+      <Footer />
     </div>
   );
 }

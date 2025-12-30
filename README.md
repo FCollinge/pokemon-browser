@@ -29,4 +29,9 @@ The separator also seems to be the same everywhere so I'll make that component.
 
 Same thing, footer I built in the detail loading page is the same everywhere so I'll write that component.
 
-Going to quickly fix the detail loading page to use the components we built
+Going to quickly fix the detail loading page to use the components we built.
+
+Some of the pages have a lot of levels of indentation so I'm going to do the sound thing of doing the minimal amount of work on each page: that is, install already existing components everywhere I can and wire up links/buttons so I can still navigate.
+
+I've changed my mind about the buttons because on the first page I decided to do it (search results) the buttons are inside of the body. Fortunately I can still hit Ctrl + Left arrow if ever I want to leave the page.
+
