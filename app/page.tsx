@@ -5,17 +5,27 @@ import {BackButton, NextButton} from '@/components/pagbuttons';
 import PokemonCard from '@/components/pokemoncard';
 import SearchInput from '@/components/searchinput';
 import SearchButton from '@/components/searchbutton';
+import {getPokemonList, getPokemon} from '@/lib/api/pokemon';
+import Link from 'next/link';
 
-export default function LandingPage() {
-  const currentPage = 1; // will come from state/API later
+export default async function LandingPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+  const params = await searchParams;
+  const currentPage = parseInt(params.page || '1');
+  const limit = 12;
+  const offset = (currentPage - 1) * limit;
+  const listData = await getPokemonList(limit, offset);
+  const pokemonPromises = listData.results.map(async (pokemon) => {
+    const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
+    const details = await getPokemon(id);
+    return {
+      id: details.id,
+      name: details.name,
+      image: details.sprites.front_default,
+      types: details.types.map(t => t.type.name)
+    };
+  });
   
-  // Dummy data for now - will be replaced with API call
-  const dummyPokemon = [
-    { id: 1, name: 'bulbasaur', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png', types: ['grass', 'poison'] },
-    { id: 2, name: 'ivysaur', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png', types: ['grass', 'poison'] },
-    { id: 3, name: 'venusaur', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png', types: ['grass', 'poison'] },
-    { id: 4, name: 'charmander', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png', types: ['fire'] },
-  ];
+  const pokemonList = await Promise.all(pokemonPromises);
   
   return (
     <div style={{
@@ -70,7 +80,7 @@ export default function LandingPage() {
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '32px'
         }}>
-          {dummyPokemon.map((pokemon) => (
+          {pokemonList.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
               id={pokemon.id}
@@ -92,9 +102,13 @@ export default function LandingPage() {
             opacity: currentPage === 1 ? 0.5 : 1,
             pointerEvents: currentPage === 1 ? 'none' : 'auto'
           }}>
-            <BackButton />
+            <Link href={`/?page=${currentPage - 1}`}>
+              <BackButton />
+            </Link>
           </div>
-          <NextButton />
+          <Link href={`/?page=${currentPage + 1}`}>
+            <NextButton />
+          </Link>
         </div>
       </div>
 

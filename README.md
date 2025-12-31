@@ -71,3 +71,10 @@ So based on the type of information I need to display at each point in time (dur
 
 I wrote the card and more of the landing page (search bar + pokemon list/grid)
 I want to focus on making the website functional now because it is a bit boring to just write static pages.
+
+So I wrote up the API functions and types and the cards display but the grid is all messed up extending much further down than I had hoped. Pagination is seriously broken, search doesn't work. The sprites on the cards are smaller than in the figma. Will tackle this now before committing.
+
+So I had my offset wrong (20 instead of 12). The sprites being too small I have no option but to eyeball a magnification.
+Nevermind, I had just thought the image was under an extra level of indentation in the figma but I was wrong and copied the wrong image pxl size. It appears to be slightly distorted now and upon closer inspection my sprites look a lot "muddier" than the figma's. So maybe I'm using the wrong sprites?
+Wrong again, there's an imageRendering flag on the img which has sharpened my sprites as desired.
+I had to properly await my promises and I wrapped the back/next buttons with links.

@@ -25,14 +25,20 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
           background: '#F4F4F5',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          borderTopLeftRadius: '8px',
+          borderTopRightRadius: '8px'
         }}>
-          <img src={image} alt={name} style={{ width: '150px', height: '150px' }} />
+          <img src={image} alt={name} style={{ width: '266px', height: '224px', imageRendering: 'pixelated'}} />
         </div>
 
         <div style={{
+          width: '266px',
+          height: '167px',
           padding: '24px',
-          gap: '6px'
+          gap: '6px',
+          borderBottomRightRadius: '8px',
+          borderBottomLeftRadius: '8px'
         }}>
           <h3 style={{
             fontFamily: 'Inter',
