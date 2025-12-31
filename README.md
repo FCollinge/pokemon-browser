@@ -78,3 +78,9 @@ So I had my offset wrong (20 instead of 12). The sprites being too small I have 
 Nevermind, I had just thought the image was under an extra level of indentation in the figma but I was wrong and copied the wrong image pxl size. It appears to be slightly distorted now and upon closer inspection my sprites look a lot "muddier" than the figma's. So maybe I'm using the wrong sprites?
 Wrong again, there's an imageRendering flag on the img which has sharpened my sprites as desired.
 I had to properly await my promises and I wrapped the back/next buttons with links.
+
+So I had the realisation that making 5 different pages was a big mistake. There probably was a much easier way of writing the website, by keeping the hero/footer which is common on each page and then swapping out the body based on the state.
+I think I will refactor that at the end because I want to stay focused on getting the website up to standard.
+
+In that case I will continue with the detail pages.
+Spent a little time trying to find the description for Bulbasaur but it definitely doesn't exist in the pokeAPI despite it being all over the internet. I have gone with the arbitrary choice of using the descriptions from pokemon Soulsilver.
