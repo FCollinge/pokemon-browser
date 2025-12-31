@@ -84,3 +84,5 @@ I think I will refactor that at the end because I want to stay focused on gettin
 
 In that case I will continue with the detail pages.
 Spent a little time trying to find the description for Bulbasaur but it definitely doesn't exist in the pokeAPI despite it being all over the internet. I have gone with the arbitrary choice of using the descriptions from pokemon Soulsilver.
+
+All done I just want to finish making the containers for this site and then dinner + New year's so I'll stop there.

@@ -220,11 +220,95 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
         </div>
 
         <div style={{
-          width: '1160px',
-          height: '634px',
-          gap: '24px'
+        width: '1160px',
+        height: '634px',
+        gap: '24px',
+        display: 'flex'
         }}>
-          Statistics
+        {/* Left Information Sidebar (Lower Body Child) */}
+        <div style={{
+            width: '329px',
+            height: '634px',
+            gap: '32px',
+            paddingTop: '36px',
+            paddingRight: '48px',
+            paddingBottom: '36px',
+            paddingLeft: '48px',
+            borderRadius: '12px',
+            border: '1px solid #E4E4E7',
+            background: '#FFFFFF',
+            boxShadow: '0px 1px 2px 0px #0000000D'
+        }}>
+            Left Sidebar Content
+        </div>
+
+    {/* Right Information Section (Child of Body) */}
+    <div style={{
+    width: '807px',
+    height: '634px',
+    gap: '24px',
+    display: 'flex',
+    flexDirection: 'column'
+    }}>
+    {/* Type, Weaknesses and Ability (top right section; child of body) */}
+    <div style={{
+    width: '807px',
+    height: '286px',
+    gap: '24px',
+    display: 'flex'
+    }}>
+    {/* Type and Weaknesses */}
+    <div style={{
+        width: '391.5px',
+        height: '286px',
+        gap: '32px',
+        paddingTop: '36px',
+        paddingRight: '48px',
+        paddingBottom: '36px',
+        paddingLeft: '48px',
+        borderRadius: '12px',
+        border: '1px solid #E4E4E7',
+        background: '#FFFFFF',
+        boxShadow: '0px 1px 2px 0px #0000000D'
+    }}>
+        Type and Weaknesses Content
+    </div>
+
+    {/* Ability */}
+    <div style={{
+        width: '391.5px',
+        height: '286px',
+        gap: '12px',
+        paddingTop: '36px',
+        paddingRight: '48px',
+        paddingBottom: '36px',
+        paddingLeft: '48px',
+        borderRadius: '12px',
+        border: '1px solid #E4E4E7',
+        background: '#FFFFFF',
+        boxShadow: '0px 1px 2px 0px #0000000D'
+    }}>
+        Ability Content
+    </div>
+    </div>
+
+    {/* Statistics Chart */}
+    <div style={{
+        width: '807px',
+        height: '324px',
+        gap: '12px',
+        paddingTop: '36px',
+        paddingRight: '48px',
+        paddingBottom: '36px',
+        paddingLeft: '48px',
+        borderRadius: '12px',
+        border: '1px solid #E4E4E7',
+        background: '#FFFFFF',
+        boxShadow: '0px 1px 2px 0px #0000000D'
+    }}>
+        Statistics Chart Content
+    </div>
+    </div>
         </div>
 
         <div style={{
