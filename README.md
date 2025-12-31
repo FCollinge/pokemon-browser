@@ -55,6 +55,6 @@ I've changed my mind I think I can still make the components without wiring the 
 
 I wasted some time messing with the badge checks under the Search Button component but frankly I think I can just get rid of them since they're invisible in the final design. Figma has a "Show leading/trailing element" option set to false for both on the button so I assumed it had something to do with spacing but I'm finding it impossible to reproduce what is shown on the figma, therefore I will just not add them.
 
-
+Looking for the next component to build, I notice the pagination buttons are very similar to the one I just built. Eureka! I have shadcn components... What a waste of time that was.
 
 
