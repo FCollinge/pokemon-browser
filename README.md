@@ -47,3 +47,8 @@ Going to make the pokemon detail page now which seems to be the most complicated
 
 I have to fill it with fake data as I want to complete the design first.
 
+I've just read that the purple elements in the figma design are actually components. I'll try and do more of the page before I make the Pokemon Avatar subcomponents.
+
+Nevermind the page is actually full of components and I guess it's because they're all API specific so I think I'll do the components now and I might as well wire them straight into the API. I'll commit whatever progress I have at the moment.
+
+

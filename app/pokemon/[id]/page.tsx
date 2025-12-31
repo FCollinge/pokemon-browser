@@ -20,16 +20,42 @@ export default function PokemonDetailPage({ params }: { params: { id: string } }
           borderBottom: '1px solid black',
           paddingRight: '64px',
           paddingLeft: '64px',
-          background: '#FFFFFF'
+          background: '#FFFFFF',
+          display: 'flex',
+          alignItems: 'center'
         }}>
-          Top Bar
+          <h1 style={{
+            width: '202px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#181A1B'
+          }}>
+            Pokemon Browser
+          </h1>
         </div>
 
         <div style={{
           width: '1440px',
           height: '380px'
         }}>
-          Top of Profile Section
+          <div style={{
+            width: '1440px',
+            height: '168px',
+            background: '#18181B33'
+          }}>
+          </div>
+
+          <div style={{
+            width: '243px',
+            height: '260px',
+            gap: '16px'
+          }}>
+            Avatar, name and number
+          </div>
         </div>
       </div>
 
