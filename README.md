@@ -40,3 +40,5 @@ So I noticed the search results page's footer is 215px instead of the 244px in m
 Fortunately I can rewrite the footer to accept the height as an argument and set my default to 244 and use 215 in the search results page
 
 Stopping there for now 20:07 GMT
+
+Resuming at 14:04 GMT
