@@ -57,4 +57,4 @@ I wasted some time messing with the badge checks under the Search Button compone
 
 Looking for the next component to build, I notice the pagination buttons are very similar to the one I just built. Eureka! I have shadcn components... What a waste of time that was.
 
-
+Onto the pagination. A lot of the code should be the same.
