@@ -58,3 +58,14 @@ I wasted some time messing with the badge checks under the Search Button compone
 Looking for the next component to build, I notice the pagination buttons are very similar to the one I just built. Eureka! I have shadcn components... What a waste of time that was.
 
 Onto the pagination. A lot of the code should be the same.
+
+So that was okay. Unfortunately now I have no way of navigating around the website anymore.
+
+I think the highest impact now would be to collect some pokemon to populate the website, because I will have to create dynamic cards for the grid and for pretty much everything else. Hopefully I can make it quite light.
+
+So reading around a bit I will need two calls to pokemon/id and pokemon-species/id for the description, category gender and weaknesses. All other variables are pokemon specific.
+
+I need to think about how to store all this information without querying all of it all of the time.
+
+So based on the type of information I need to display at each point in time (during use of the website) I think I need to build the pokemon card and grid first.
+
