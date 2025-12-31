@@ -51,4 +51,10 @@ I've just read that the purple elements in the figma design are actually compone
 
 Nevermind the page is actually full of components and I guess it's because they're all API specific so I think I'll do the components now and I might as well wire them straight into the API. I'll commit whatever progress I have at the moment.
 
+I've changed my mind I think I can still make the components without wiring the API just yet. Hopefully I can save it for a final pass through. I'm just going to make as many components as I can find in the figma.
+
+I wasted some time messing with the badge checks under the Search Button component but frankly I think I can just get rid of them since they're invisible in the final design. Figma has a "Show leading/trailing element" option set to false for both on the button so I assumed it had something to do with spacing but I'm finding it impossible to reproduce what is shown on the figma, therefore I will just not add them.
+
+
+
 
