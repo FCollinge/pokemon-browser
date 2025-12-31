@@ -42,3 +42,5 @@ Fortunately I can rewrite the footer to accept the height as an argument and set
 Stopping there for now 20:07 GMT
 
 Resuming at 14:04 GMT
+
+Going to make the pokemon detail page now which seems to be the most complicated.

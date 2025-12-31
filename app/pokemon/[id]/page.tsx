@@ -1,16 +1,33 @@
-import Link from 'next/link';
+import Separator from '@/components/separator';
+import Footer from '@/components/footer';
 
 export default function PokemonDetailPage({ params }: { params: { id: string } }) {
   return (
-    <div>
-      <Link href="/search">Back to Results</Link>
-      <h1>Pokemon #{params.id}</h1>
-      
-      <div>
-        <p>pokemon details here</p>
+    <div style={{
+      width: '1440px',
+      height: '1704px',
+      gap: '48px',
+      background: '#FFFFFF'
+    }}>
+      <div style={{
+        width: '1440px',
+        height: '460px'
+      }}>
+        top bar and top section
       </div>
 
-      <Link href="/pokemon/2">Next Pokemon</Link>
+      <div style={{
+        width: '1440px',
+        height: '883px',
+        gap: '40px',
+        paddingRight: '140px',
+        paddingLeft: '140px'
+      }}>
+        Body content here
+      </div>
+
+      <Separator />
+      <Footer height="216px" />
     </div>
   );
 }
