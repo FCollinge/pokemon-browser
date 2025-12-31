@@ -69,3 +69,5 @@ I need to think about how to store all this information without querying all of 
 
 So based on the type of information I need to display at each point in time (during use of the website) I think I need to build the pokemon card and grid first.
 
+I wrote the card and more of the landing page (search bar + pokemon list/grid)
+I want to focus on making the website functional now because it is a bit boring to just write static pages.
