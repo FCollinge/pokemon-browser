@@ -44,3 +44,6 @@ Stopping there for now 20:07 GMT
 Resuming at 14:04 GMT
 
 Going to make the pokemon detail page now which seems to be the most complicated.
+
+I have to fill it with fake data as I want to complete the design first.
+
