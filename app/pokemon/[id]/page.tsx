@@ -1,6 +1,7 @@
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
 import {getPokemon, getPokemonSpecies} from '@/lib/api/pokemon';
+import StatBar from '@/components/detailstatbar';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -26,6 +27,18 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
     return 'Male / Female';
     };
     const gender = getGender(species.gender_rate);
+
+const getStatPercentage = (statName: string) => {
+const stat = pokemon.stats.find(s => s.stat.name === statName);
+return stat ? Math.round((stat.base_stat / 255) * 100) : 0;
+};
+
+const hpPercent = getStatPercentage('hp');
+const attackPercent = getStatPercentage('attack');
+const defensePercent = getStatPercentage('defense');
+const spAttackPercent = getStatPercentage('special-attack');
+const spDefensePercent = getStatPercentage('special-defense');
+const speedPercent = getStatPercentage('speed');
   return (
     <div style={{
       width: '1440px',
@@ -445,19 +458,26 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
 
     {/* Statistics Chart */}
     <div style={{
-        width: '807px',
-        height: '324px',
-        gap: '12px',
-        paddingTop: '36px',
-        paddingRight: '48px',
-        paddingBottom: '36px',
-        paddingLeft: '48px',
-        borderRadius: '12px',
-        border: '1px solid #E4E4E7',
-        background: '#FFFFFF',
-        boxShadow: '0px 1px 2px 0px #0000000D'
+    width: '807px',
+    height: '324px',
+    gap: '12px',
+    paddingTop: '36px',
+    paddingRight: '48px',
+    paddingBottom: '36px',
+    paddingLeft: '48px',
+    borderRadius: '12px',
+    border: '1px solid #E4E4E7',
+    background: '#FFFFFF',
+    boxShadow: '0px 1px 2px 0px #0000000D',
+    display: 'flex',
+    flexDirection: 'column'
     }}>
-        Statistics Chart Content
+    <StatBar title="HP" percentage={hpPercent} />
+    <StatBar title="Attack" percentage={attackPercent} />
+    <StatBar title="Defense" percentage={defensePercent} />
+    <StatBar title="Special Attack" percentage={spAttackPercent} />
+    <StatBar title="Special Defense" percentage={spDefensePercent} />
+    <StatBar title="Speed" percentage={speedPercent} />
     </div>
     </div>
         </div>

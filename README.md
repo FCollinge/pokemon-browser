@@ -92,3 +92,7 @@ I also want to look at fixing/scaling the page display to the browser.
 
 Left sidebar is done. Had to make some changes to the api values because the format is different (weight in hectograms for example). Also I had to figure out how to get the gender which depends on the "gender_rate" variable.
 The page's sourcecode is getting ridiculously long so I will definitely want to refactor at least this page (for example lots of repeated formatting for the left sidebar when I could've just made a component).
+
+Going to do the statistics chart now. I won't do the same mistake as I just did with the left sidebar and I'll just immediately save myself some time and write a component.
+
+Well this worked better, I still had to declare lots of variables and it seems the code is repetitive. I leave here a note to refactor those in something shorter. Displaying all the same stats each time in the same order I could probably have written it even shorter using a list of sorts.
