@@ -1,8 +1,7 @@
 import Hero from '@/components/hero';
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
-import SearchInput from '@/components/searchinput';
-import SearchButton from '@/components/searchbutton';
+import SearchBar from '@/components/searchbar';
 
 export default function SearchResultsPage() {
   return (
@@ -48,8 +47,7 @@ export default function SearchResultsPage() {
             display: 'flex',
             alignItems: 'center'
           }}>
-            <SearchInput />
-            <SearchButton />
+            <SearchBar/>
           </div>
         </div>
 

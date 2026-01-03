@@ -3,8 +3,7 @@ import Separator from '@/components/separator';
 import Footer from '@/components/footer';
 import {BackButton, NextButton} from '@/components/pagbuttons';
 import PokemonCard from '@/components/pokemoncard';
-import SearchInput from '@/components/searchinput';
-import SearchButton from '@/components/searchbutton';
+import SearchBar from '@/components/searchbar';
 import {getPokemonList, getPokemon} from '@/lib/api/pokemon';
 import Link from 'next/link';
 
@@ -68,8 +67,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             display: 'flex',
             alignItems: 'center'
           }}>
-            <SearchInput />
-            <SearchButton />
+            <SearchBar />
           </div>
         </div>
 

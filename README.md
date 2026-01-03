@@ -107,3 +107,11 @@ So same thing I'll have to write an (albeit much simpler) auxiliary function to 
 I'm just going to do the lower nav section which is just a button to the homepage. I considered wiring the page back to the page on which the viewed pokemon was originally displayed but in practice people will use prev/next page and also the search bar, which would make that button useless.
 
 That's done. All that is left in terms of critical functionality is the search bar.
+
+I think for the search bar best thing to do is get rid of my searchinput and searchbuttons and rewrite those with my newfound knowledge.
+
+Turns out I never actually wrote the search results page because I never had a way of accessing it and it slipped my mind. I'll write that when I'm done with this search bar
+
+I added keyhandling so that I can hit enter to finalise my search.
+
+Next is to do the search results page which shouldn't be a problem.
