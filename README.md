@@ -138,3 +138,23 @@ a. Lots of refactoring b. Going over all of the figma specs. I notice for exampl
 
 I think the refactoring is a higher priority.
 I also need to go over the readme to check if I left any notes for stuff I promised myself to do later.
+
+After having regex'd my repo I will:
+
+Detail page:
+    Componentise the left sidebar 
+    Use an array for the stats instead of declaring them individually
+Global:
+   fixed width needs to be dynamic to the browser
+   reduce total number of pages (can probably make it two: general/search and the detail page)
+Loading states:
+    move skeletons to actually use them properly
+UI:
+    fix the badges (probably componentise)
+
+Game plan:
+1. Detail page refactors
+2. Badge component
+3. Loading states
+4. Page consolidation
+5. global responsive design (includes checking if it works on my phone)
