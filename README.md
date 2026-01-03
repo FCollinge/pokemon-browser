@@ -128,3 +128,5 @@ So I figured out that my hashmap not only was missing a whole category of immuni
 Turns out that's also wrong I therefore blame my source.
 
 After rewriting the map and adding the necessary logic I then wasted another 15 minutes because my test script was broken not the source code... It works now though.
+
+I'll write the badges into the detail page now.

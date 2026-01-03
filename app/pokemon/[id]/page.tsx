@@ -5,6 +5,7 @@ import StatBar from '@/components/detailstatbar';
 import {Badge} from '@/components/ui/badge';
 import {ArrowLeft} from 'lucide-react';
 import Link from 'next/link';
+import {getWeaknesses} from '@/lib/weaknesses';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -42,6 +43,9 @@ const defensePercent = getStatPercentage('defense');
 const spAttackPercent = getStatPercentage('special-attack');
 const spDefensePercent = getStatPercentage('special-defense');
 const speedPercent = getStatPercentage('speed');
+const types = pokemon.types.map(t => t.type.name);
+const weaknesses = getWeaknesses(types);
+
   return (
     <div style={{
       width: '1440px',
@@ -470,7 +474,7 @@ const speedPercent = getStatPercentage('speed');
         }}>
         {pokemon.types.map((type) => (
             <Badge key={type.type.name} style={{
-            width: '62px',
+            width: '54px',
             height: '20px',
             gap: '10px',
             paddingTop: '2px',
@@ -517,8 +521,9 @@ const speedPercent = getStatPercentage('speed');
         paddingBottom: '4px',
         display: 'flex'
         }}>
-        <Badge style={{
-            width: '62px',
+        {weaknesses.map((weakness) => (
+            <Badge key={weakness} style={{
+            width: '57px',
             height: '20px',
             gap: '10px',
             paddingTop: '2px',
@@ -528,10 +533,12 @@ const speedPercent = getStatPercentage('speed');
             borderRadius: '6px',
             background: '#181A1B',
             color: '#FAFAFA',
-            fontSize: '12px'
-        }}>
-            plcholder..
-        </Badge>
+            fontSize: '12px',
+            textTransform: 'capitalize'
+            }}>
+            {weakness}
+            </Badge>
+        ))}
         </div>
     </div>
     </div>
