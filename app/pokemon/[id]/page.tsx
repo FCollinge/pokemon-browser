@@ -7,7 +7,7 @@ import {ArrowLeft} from 'lucide-react';
 import Link from 'next/link';
 import {getWeaknesses} from '@/lib/weaknesses';
 import Image from 'next/image';
-
+import DetailSidebarItem from '@/components/detailsidebaritem';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -39,12 +39,25 @@ const stat = pokemon.stats.find(s => s.stat.name === statName);
 return stat ? Math.round((stat.base_stat / 255) * 100) : 0;
 };
 
-const hpPercent = getStatPercentage('hp');
-const attackPercent = getStatPercentage('attack');
-const defensePercent = getStatPercentage('defense');
-const spAttackPercent = getStatPercentage('special-attack');
-const spDefensePercent = getStatPercentage('special-defense');
-const speedPercent = getStatPercentage('speed');
+const stats = [
+  { name: 'HP', key: 'hp' },
+  { name: 'Attack', key: 'attack' },
+  { name: 'Defense', key: 'defense' },
+  { name: 'Special Attack', key: 'special-attack' },
+  { name: 'Special Defense', key: 'special-defense' },
+  { name: 'Speed', key: 'speed' }
+].map(stat => ({
+  ...stat,
+  percentage: getStatPercentage(stat.key)
+}));
+
+const sidebarItems = [
+  { label: 'Height', value: `${heightInMeters}m` },
+  { label: 'Category', value: category },
+  { label: 'Weight', value: `${weightInKg} kg` },
+  { label: 'Gender', value: gender }
+];
+
 const types = pokemon.types.map(t => t.type.name);
 const weaknesses = getWeaknesses(types);
 const abilityDetails = await Promise.all(
@@ -283,141 +296,9 @@ const abilityDetails = await Promise.all(
         display: 'flex',
         flexDirection: 'column'
         }}>
-        {/* Height */}
-        <div style={{
-            width: '233px',
-            height: '72px',
-            gap: '12px',
-            display: 'flex',
-            flexDirection: 'column'
-        }}>
-            <div style={{
-            width: '233px',
-            height: '32px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '32px',
-            letterSpacing: '-2.5%',
-            color: '#000000'
-            }}>
-            Height
-            </div>
-            <div style={{
-            width: '233px',
-            height: '28px',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '28px',
-            letterSpacing: '0%',
-            color: '#181A1B'
-            }}>
-            {heightInMeters}m
-            </div>
-        </div>
-
-        {/* Category */}
-        <div style={{
-            width: '233px',
-            height: '72px',
-            gap: '12px',
-            display: 'flex',
-            flexDirection: 'column'
-        }}>
-            <div style={{
-            width: '233px',
-            height: '32px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '32px',
-            letterSpacing: '-2.5%',
-            color: '#000000'
-            }}>
-            Category
-            </div>
-            <div style={{
-            width: '233px',
-            height: '28px',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '28px',
-            letterSpacing: '0%',
-            color: '#181A1B'
-            }}>
-            {category}
-            </div>
-        </div>
-
-        {/* Weight */}
-        <div style={{
-            width: '233px',
-            height: '72px',
-            gap: '12px',
-            display: 'flex',
-            flexDirection: 'column'
-        }}>
-            <div style={{
-            width: '233px',
-            height: '32px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '32px',
-            letterSpacing: '-2.5%',
-            color: '#000000'
-            }}>
-            Weight
-            </div>
-            <div style={{
-            width: '233px',
-            height: '28px',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '28px',
-            letterSpacing: '0%',
-            color: '#181A1B'
-            }}>
-            {weightInKg} kg
-            </div>
-        </div>
-
-        {/* Gender */}
-        <div style={{
-            width: '233px',
-            height: '72px',
-            gap: '12px',
-            display: 'flex',
-            flexDirection: 'column'
-        }}>
-            <div style={{
-            width: '233px',
-            height: '32px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '32px',
-            letterSpacing: '-2.5%',
-            color: '#000000'
-            }}>
-            Gender
-            </div>
-            <div style={{
-            width: '233px',
-            height: '28px',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '28px',
-            letterSpacing: '0%',
-            color: '#181A1B'
-            }}>
-            {gender}
-            </div>
-        </div>
+        {sidebarItems.map((item) => (
+        <DetailSidebarItem key={item.label} label={item.label} value={item.value} />
+        ))}
         </div>
 
     {/* Right Information Section (Child of Body) */}
@@ -627,12 +508,9 @@ const abilityDetails = await Promise.all(
     display: 'flex',
     flexDirection: 'column'
     }}>
-    <StatBar title="HP" percentage={hpPercent} />
-    <StatBar title="Attack" percentage={attackPercent} />
-    <StatBar title="Defense" percentage={defensePercent} />
-    <StatBar title="Special Attack" percentage={spAttackPercent} />
-    <StatBar title="Special Defense" percentage={spDefensePercent} />
-    <StatBar title="Speed" percentage={speedPercent} />
+        {stats.map(stat => (
+        <StatBar key={stat.key} title={stat.name} percentage={stat.percentage} />
+        ))}
     </div>
     </div>
         </div>

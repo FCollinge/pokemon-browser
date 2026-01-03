@@ -158,3 +158,5 @@ Game plan:
 3. Loading states
 4. Page consolidation
 5. global responsive design (includes checking if it works on my phone)
+
+Detail page refactors done (700 -> 570 lines)
