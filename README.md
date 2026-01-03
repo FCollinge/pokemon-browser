@@ -90,3 +90,5 @@ All done I just want to finish making the containers for this site and then dinn
 First session since the new year, hopefully this should be the last for this project but I still have tomorrow to finish. Right now I need to finish making the detail page, after that I need to make the search functionality and iirc that'll be everything. I'll have a look at any refactors and especially making sure the skeleton pages appear in the right spot (probably refactoring them into the actual target pages).
 I also want to look at fixing/scaling the page display to the browser.
 
+Left sidebar is done. Had to make some changes to the api values because the format is different (weight in hectograms for example). Also I had to figure out how to get the gender which depends on the "gender_rate" variable.
+The page's sourcecode is getting ridiculously long so I will definitely want to refactor at least this page (for example lots of repeated formatting for the left sidebar when I could've just made a component).

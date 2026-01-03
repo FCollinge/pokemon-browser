@@ -45,4 +45,11 @@ export interface PokemonSpecies {
       name: string;
     };
   }[];
+  genera: {
+    genus: string;
+    language: {
+      name: string;
+    };
+  }[];
+  gender_rate: number;
 }

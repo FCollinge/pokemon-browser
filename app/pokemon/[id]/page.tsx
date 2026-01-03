@@ -8,9 +8,24 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
   const species = await getPokemonSpecies(id);
   
   const description = species.flavor_text_entries
-    .find(entry => entry.language.name === 'en' && entry.version.name === 'soulsilver')
+    .find(entry => entry.language.name === 'en' && entry.version.name === 'shield')
     ?.flavor_text.replace(/\f/g, ' ') || 'No description available.';
 
+  const category = species.genera
+    .find(g => g.language.name === 'en')
+    ?.genus.slice(0, -8) || 'Unknown';
+
+    const heightInMeters = (pokemon.height / 10).toFixed(1);
+
+    const weightInKg = (pokemon.weight / 10).toFixed(1);
+
+    const getGender = (rate: number) => {
+    if (rate === -1) return 'Genderless';
+    if (rate === 0) return 'Male only';
+    if (rate === 8) return 'Female only';
+    return 'Male / Female';
+    };
+    const gender = getGender(species.gender_rate);
   return (
     <div style={{
       width: '1440px',
@@ -227,19 +242,155 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
         }}>
         {/* Left Information Sidebar (Lower Body Child) */}
         <div style={{
-            width: '329px',
-            height: '634px',
-            gap: '32px',
-            paddingTop: '36px',
-            paddingRight: '48px',
-            paddingBottom: '36px',
-            paddingLeft: '48px',
-            borderRadius: '12px',
-            border: '1px solid #E4E4E7',
-            background: '#FFFFFF',
-            boxShadow: '0px 1px 2px 0px #0000000D'
+        width: '329px',
+        height: '634px',
+        gap: '32px',
+        paddingTop: '36px',
+        paddingRight: '48px',
+        paddingBottom: '36px',
+        paddingLeft: '48px',
+        borderRadius: '12px',
+        border: '1px solid #E4E4E7',
+        background: '#FFFFFF',
+        boxShadow: '0px 1px 2px 0px #0000000D',
+        display: 'flex',
+        flexDirection: 'column'
         }}>
-            Left Sidebar Content
+        {/* Height */}
+        <div style={{
+            width: '233px',
+            height: '72px',
+            gap: '12px',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <div style={{
+            width: '233px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#000000'
+            }}>
+            Height
+            </div>
+            <div style={{
+            width: '233px',
+            height: '28px',
+            fontFamily: 'Inter',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '28px',
+            letterSpacing: '0%',
+            color: '#181A1B'
+            }}>
+            {heightInMeters}m
+            </div>
+        </div>
+
+        {/* Category */}
+        <div style={{
+            width: '233px',
+            height: '72px',
+            gap: '12px',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <div style={{
+            width: '233px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#000000'
+            }}>
+            Category
+            </div>
+            <div style={{
+            width: '233px',
+            height: '28px',
+            fontFamily: 'Inter',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '28px',
+            letterSpacing: '0%',
+            color: '#181A1B'
+            }}>
+            {category}
+            </div>
+        </div>
+
+        {/* Weight */}
+        <div style={{
+            width: '233px',
+            height: '72px',
+            gap: '12px',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <div style={{
+            width: '233px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#000000'
+            }}>
+            Weight
+            </div>
+            <div style={{
+            width: '233px',
+            height: '28px',
+            fontFamily: 'Inter',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '28px',
+            letterSpacing: '0%',
+            color: '#181A1B'
+            }}>
+            {weightInKg} kg
+            </div>
+        </div>
+
+        {/* Gender */}
+        <div style={{
+            width: '233px',
+            height: '72px',
+            gap: '12px',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
+            <div style={{
+            width: '233px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#000000'
+            }}>
+            Gender
+            </div>
+            <div style={{
+            width: '233px',
+            height: '28px',
+            fontFamily: 'Inter',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '28px',
+            letterSpacing: '0%',
+            color: '#181A1B'
+            }}>
+            {gender}
+            </div>
+        </div>
         </div>
 
     {/* Right Information Section (Child of Body) */}
