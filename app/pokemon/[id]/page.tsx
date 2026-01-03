@@ -6,6 +6,8 @@ import {Badge} from '@/components/ui/badge';
 import {ArrowLeft} from 'lucide-react';
 import Link from 'next/link';
 import {getWeaknesses} from '@/lib/weaknesses';
+import Image from 'next/image';
+
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -128,16 +130,17 @@ const abilityDetails = await Promise.all(
                 left: 0
               }} />
               
-              <img 
-                src={pokemon.sprites.front_default} 
-                alt={pokemon.name}
-                style={{
-                  width: '208px',
-                  height: '208px',
-                  position: 'relative',
-                  imageRendering: 'pixelated'
-                }}
-              />
+            <Image 
+            src={pokemon.sprites.front_default} 
+            alt={pokemon.name}
+            width={208}
+            height={208}
+            style={{
+                position: 'relative',
+                imageRendering: 'pixelated'
+            }}
+            unoptimized
+            />
             </div>
 
             {/* Name and number */}
@@ -230,15 +233,16 @@ const abilityDetails = await Promise.all(
         }} />
         
         {/* cherish-ball 2 */}
-        <img 
-            src="/cherish-ball.png"
-            alt="Cherish ball"
-            style={{
-            width: '101.73px',
-            height: '97px',
+        <Image 
+        src="/cherish-ball.png"
+        alt="Cherish ball"
+        width={101.73}
+        height={97}
+        style={{
             position: 'relative',
             imageRendering: 'pixelated'
-            }}
+        }}
+        unoptimized
         />
         </div>
 

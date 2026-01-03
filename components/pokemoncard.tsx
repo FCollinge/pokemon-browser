@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import {Card} from '@/components/ui/card';
 import {Badge} from '@/components/ui/badge';
+import Image from 'next/image';
 
 interface PokemonCardProps {
   id: number;
@@ -29,7 +30,14 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
           borderTopLeftRadius: '8px',
           borderTopRightRadius: '8px'
         }}>
-          <img src={image} alt={name} style={{ width: '266px', height: '224px', imageRendering: 'pixelated'}} />
+          <Image 
+            src={image} 
+            alt={name} 
+            width={266} 
+            height={224} 
+            style={{ imageRendering: 'pixelated' }}
+            unoptimized
+            />
         </div>
 
         <div style={{

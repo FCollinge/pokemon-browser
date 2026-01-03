@@ -77,7 +77,7 @@ export default async function SearchResultsPage({
             letterSpacing: '-2.5%',
             color: '#181A1B'
           }}>
-            Search Results for '{query}'
+            Search Results for &apos;{query}&apos;
           </h2>
 
           <div style={{

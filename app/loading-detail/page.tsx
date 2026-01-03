@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
