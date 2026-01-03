@@ -130,3 +130,5 @@ Turns out that's also wrong I therefore blame my source.
 After rewriting the map and adding the necessary logic I then wasted another 15 minutes because my test script was broken not the source code... It works now though.
 
 I'll write the badges into the detail page now.
+
+Wiring the descriptions. Had a bit of a dilemma since I need to display multiple abilities for certain pokemon. I first considered showing hidden abilities as well, but as the figma doesn't for bulbasaur I decided not to (as well as three abilities + three descriptions forced me to write a scrolling thing)

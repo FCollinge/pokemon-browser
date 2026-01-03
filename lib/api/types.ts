@@ -62,3 +62,25 @@ export interface PokemonAbility {
   };
   is_hidden: boolean;
 }
+
+export interface AbilityDetail {
+  effect_entries: {
+    effect: string;
+    short_effect: string;
+    language: {
+      name: string;
+      url: string;
+    };
+  }[];
+  flavor_text_entries: {
+    flavor_text: string;
+    language: {
+      name: string;
+      url: string;
+    };
+    version_group: {
+      name: string;
+      url: string;
+    };
+  }[];
+}

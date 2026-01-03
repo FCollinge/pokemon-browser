@@ -1,6 +1,6 @@
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
-import {getPokemon, getPokemonSpecies} from '@/lib/api/pokemon';
+import {getPokemon, getPokemonSpecies, getAbility} from '@/lib/api/pokemon';
 import StatBar from '@/components/detailstatbar';
 import {Badge} from '@/components/ui/badge';
 import {ArrowLeft} from 'lucide-react';
@@ -45,6 +45,9 @@ const spDefensePercent = getStatPercentage('special-defense');
 const speedPercent = getStatPercentage('speed');
 const types = pokemon.types.map(t => t.type.name);
 const weaknesses = getWeaknesses(types);
+const abilityDetails = await Promise.all(
+  pokemon.abilities.filter(a => !a.is_hidden).map(a => getAbility(a.ability.name))
+);
 
   return (
     <div style={{
@@ -569,7 +572,7 @@ const weaknesses = getWeaknesses(types);
             letterSpacing: '-2.5%',
             color: '#181A1B'
         }}>
-            Ability
+        {abilityDetails.length === 2 ? 'Abilities' : 'Ability'}
         </div>
         <div style={{
             width: '295.5px',
@@ -580,15 +583,27 @@ const weaknesses = getWeaknesses(types);
             letterSpacing: '0%',
             color: '#181A1B'
         }}>
-            <div style={{ fontWeight: '400' }}>
-                {pokemon.abilities[0]?.ability.name.split('-').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1)
-                ).join(' ')}
-            </div>
-            <div style={{ fontWeight: '300', fontStyle: 'italic' }}>
-                (Ability description placeholder for now)
-            </div>
-        </div>
+        {abilityDetails.map((abilityDetail, index) => {
+            const ability = pokemon.abilities.filter(a => !a.is_hidden)[index];
+            const description = abilityDetail?.effect_entries
+                ?.find(entry => entry.language.name === 'en')
+                ?.short_effect || 'No description available.';
+            
+            return (
+                <div key={ability.ability.name} style={{marginBottom: index === abilityDetails.length - 1 ? '0' : '12px' }}>
+                    <div style={{ fontWeight: '400' }}>
+                        {ability.ability.name.split('-').map(word => 
+                            word.charAt(0).toUpperCase() + word.slice(1)
+                        ).join(' ')}
+                    </div>
+                    <div style={{ fontWeight: '300', fontStyle: 'italic' }}>
+                        {description}
+                    </div>
+                </div>
+            );
+        })}
+
+</div>
     </div>
     </div>
 

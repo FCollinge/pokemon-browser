@@ -1,4 +1,4 @@
-import {Pokemon, PokemonListResponse, PokemonSpecies} from './types';
+import {Pokemon, PokemonListResponse, PokemonSpecies, AbilityDetail} from './types';
 
 export async function getPokemon(id: string | number): Promise<Pokemon> {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -15,5 +15,11 @@ export async function getPokemonList(limit: number = 20, offset: number = 0): Pr
 export async function getPokemonSpecies(id: string | number): Promise<PokemonSpecies> {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
   if (!res.ok) throw new Error('Failed to fetch pokemon species');
+  return res.json();
+}
+
+export async function getAbility(nameOrId: string | number): Promise<AbilityDetail> {
+  const res = await fetch(`https://pokeapi.co/api/v2/ability/${nameOrId}`);
+  if (!res.ok) throw new Error('Failed to fetch ability');
   return res.json();
 }
