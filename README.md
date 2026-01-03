@@ -131,4 +131,10 @@ After rewriting the map and adding the necessary logic I then wasted another 15 
 
 I'll write the badges into the detail page now.
 
-Wiring the descriptions. Had a bit of a dilemma since I need to display multiple abilities for certain pokemon. I first considered showing hidden abilities as well, but as the figma doesn't for bulbasaur I decided not to (as well as three abilities + three descriptions forced me to write a scrolling thing)
+Wiring the descriptions. Had a bit of a dilemma since I need to display multiple abilities for certain pokemon. I first considered showing hidden abilities as well, but as the figma doesn't for bulbasaur I decided not to (as well as three abilities + three descriptions forced me to write a scrolling thing).
+
+The previous commit was the final commit before the website included every required component. There's two things to do:
+a. Lots of refactoring b. Going over all of the figma specs. I notice for example the badges aren't perfect and some divisions are also not quite right.
+
+I think the refactoring is a higher priority.
+I also need to go over the readme to check if I left any notes for stuff I promised myself to do later.
