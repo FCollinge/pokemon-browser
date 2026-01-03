@@ -115,3 +115,5 @@ Turns out I never actually wrote the search results page because I never had a w
 I added keyhandling so that I can hit enter to finalise my search.
 
 Next is to do the search results page which shouldn't be a problem.
+
+It took a little while but I got there. It was a lot of stuff I had already seen before. I added a "feature" where searching an empty string returns the user to the home page
