@@ -162,3 +162,7 @@ Game plan:
 Detail page refactors done (700 -> 570 lines)
 
 Type badges made into component and added. also added a line to justify the weakness badges to the next line if need be. No need to adjust container height.
+
+I've fixed the loading pages (just copy and paste into right location and rename a couple things) and added a spinner that was missing to the home loading page. Note for future: Wrap content in a "Suspense" so the spinner also appears when using the pagination.
+
+Will stop there for today.
