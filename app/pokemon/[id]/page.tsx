@@ -2,7 +2,7 @@ import Separator from '@/components/separator';
 import Footer from '@/components/footer';
 import {getPokemon, getPokemonSpecies, getAbility} from '@/lib/api/pokemon';
 import StatBar from '@/components/detailstatbar';
-import {Badge} from '@/components/ui/badge';
+import TypeBadge from '@/components/typebadge';
 import {ArrowLeft} from 'lucide-react';
 import Link from 'next/link';
 import {getWeaknesses} from '@/lib/weaknesses';
@@ -361,22 +361,7 @@ const abilityDetails = await Promise.all(
         display: 'flex'
         }}>
         {pokemon.types.map((type) => (
-            <Badge key={type.type.name} style={{
-            width: '54px',
-            height: '20px',
-            gap: '10px',
-            paddingTop: '2px',
-            paddingRight: '10px',
-            paddingBottom: '2px',
-            paddingLeft: '10px',
-            borderRadius: '6px',
-            background: '#181A1B',
-            color: '#FAFAFA',
-            fontSize: '12px',
-            textTransform: 'capitalize'
-            }}>
-            {type.type.name}
-            </Badge>
+        <TypeBadge key={type.type.name} type={type.type.name} />
         ))}
         </div>
     </div>
@@ -407,25 +392,11 @@ const abilityDetails = await Promise.all(
         gap: '12px',
         paddingTop: '4px',
         paddingBottom: '4px',
-        display: 'flex'
+        display: 'flex',
+        flexWrap: 'wrap' // Abomasnow has 7 weaknesses so we need to use this
         }}>
         {weaknesses.map((weakness) => (
-            <Badge key={weakness} style={{
-            width: '57px',
-            height: '20px',
-            gap: '10px',
-            paddingTop: '2px',
-            paddingRight: '10px',
-            paddingBottom: '2px',
-            paddingLeft: '10px',
-            borderRadius: '6px',
-            background: '#181A1B',
-            color: '#FAFAFA',
-            fontSize: '12px',
-            textTransform: 'capitalize'
-            }}>
-            {weakness}
-            </Badge>
+        <TypeBadge key={weakness} type={weakness} />
         ))}
         </div>
     </div>

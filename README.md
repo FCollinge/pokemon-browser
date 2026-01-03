@@ -160,3 +160,5 @@ Game plan:
 5. global responsive design (includes checking if it works on my phone)
 
 Detail page refactors done (700 -> 570 lines)
+
+Type badges made into component and added. also added a line to justify the weakness badges to the next line if need be. No need to adjust container height.
