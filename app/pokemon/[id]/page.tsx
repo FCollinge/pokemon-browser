@@ -2,6 +2,7 @@ import Separator from '@/components/separator';
 import Footer from '@/components/footer';
 import {getPokemon, getPokemonSpecies} from '@/lib/api/pokemon';
 import StatBar from '@/components/detailstatbar';
+import {Badge} from '@/components/ui/badge';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -423,19 +424,114 @@ const speedPercent = getStatPercentage('speed');
     }}>
     {/* Type and Weaknesses */}
     <div style={{
-        width: '391.5px',
-        height: '286px',
-        gap: '32px',
-        paddingTop: '36px',
-        paddingRight: '48px',
-        paddingBottom: '36px',
-        paddingLeft: '48px',
-        borderRadius: '12px',
-        border: '1px solid #E4E4E7',
-        background: '#FFFFFF',
-        boxShadow: '0px 1px 2px 0px #0000000D'
+    width: '391.5px',
+    height: '286px',
+    gap: '32px',
+    paddingTop: '36px',
+    paddingRight: '48px',
+    paddingBottom: '36px',
+    paddingLeft: '48px',
+    borderRadius: '12px',
+    border: '1px solid #E4E4E7',
+    background: '#FFFFFF',
+    boxShadow: '0px 1px 2px 0px #0000000D',
+    display: 'flex',
+    flexDirection: 'column'
     }}>
-        Type and Weaknesses Content
+    {/* Type */}
+    <div style={{
+        width: '295.5px',
+        height: '72px',
+        gap: '12px',
+        display: 'flex',
+        flexDirection: 'column'
+    }}>
+        <div style={{
+        width: '295.5px',
+        height: '32px',
+        fontFamily: 'Inter',
+        fontWeight: '600',
+        fontSize: '24px',
+        lineHeight: '32px',
+        letterSpacing: '-2.5%',
+        color: '#181A1B'
+        }}>
+        Type
+        </div>
+        <div style={{
+        width: '295.5px',
+        height: '28px',
+        gap: '12px',
+        paddingTop: '4px',
+        paddingBottom: '4px',
+        display: 'flex'
+        }}>
+        {pokemon.types.map((type) => (
+            <Badge key={type.type.name} style={{
+            width: '62px',
+            height: '20px',
+            gap: '10px',
+            paddingTop: '2px',
+            paddingRight: '10px',
+            paddingBottom: '2px',
+            paddingLeft: '10px',
+            borderRadius: '6px',
+            background: '#181A1B',
+            color: '#FAFAFA',
+            fontSize: '12px',
+            textTransform: 'capitalize'
+            }}>
+            {type.type.name}
+            </Badge>
+        ))}
+        </div>
+    </div>
+
+    {/* Weaknesses */}
+    <div style={{
+        width: '295.5px',
+        height: '72px',
+        gap: '12px',
+        display: 'flex',
+        flexDirection: 'column'
+    }}>
+        <div style={{
+        width: '295.5px',
+        height: '32px',
+        fontFamily: 'Inter',
+        fontWeight: '600',
+        fontSize: '24px',
+        lineHeight: '32px',
+        letterSpacing: '-2.5%',
+        color: '#181A1B'
+        }}>
+        Weaknesses
+        </div>
+        <div style={{
+        width: '295.5px',
+        height: '28px',
+        gap: '12px',
+        paddingTop: '4px',
+        paddingBottom: '4px',
+        display: 'flex'
+        }}>
+        <Badge style={{
+            width: '62px',
+            height: '20px',
+            gap: '10px',
+            paddingTop: '2px',
+            paddingRight: '10px',
+            paddingBottom: '2px',
+            paddingLeft: '10px',
+            borderRadius: '6px',
+            background: '#181A1B',
+            color: '#FAFAFA',
+            fontSize: '12px'
+        }}>
+            plcholder..
+        </Badge>
+        </div>
+    </div>
     </div>
 
     {/* Ability */}

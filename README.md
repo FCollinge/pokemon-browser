@@ -96,3 +96,7 @@ The page's sourcecode is getting ridiculously long so I will definitely want to 
 Going to do the statistics chart now. I won't do the same mistake as I just did with the left sidebar and I'll just immediately save myself some time and write a component.
 
 Well this worked better, I still had to declare lots of variables and it seems the code is repetitive. I leave here a note to refactor those in something shorter. Displaying all the same stats each time in the same order I could probably have written it even shorter using a list of sorts.
+
+Doing the type/weaknesses section I see that I could've written a custom badge component for the types when I wrote the pokemoncard component. I won't do that now because I am now motivated to do lots of refactoring before I hand in the assignment, so I'll save some head scratching for now and just copy the code around.
+
+Turns out the weaknesses involves a bit of logic so I'm going to skip that for right now. This is because weaknesses aren't provided by the API and the logic is that one must calculate the multipliers of a pokemon's types against all other elements. For example a grass/poison pokemon like Bulbasaur is weak to fire and psychic and those multipliers stack. I'll just have to write a function but for now I want to continue the page and I'll just leave a placeholder.
