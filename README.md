@@ -103,3 +103,7 @@ Turns out the weaknesses involves a bit of logic so I'm going to skip that for r
 
 I'm going to do the ability section now.
 So same thing I'll have to write an (albeit much simpler) auxiliary function to map pokemon.ability to ability.description. I'll do that later because for now the format is done. I'm also a bit confused because about half of all pokemon have two abilities to sample from. A rule of the game it seems is that pokemon only exhibit one ability but there are definitely more available in the API and obviously in the game. So I think I'll also rewrite that bit to maybe display "Abilities" and both descriptions, but I'll want to do that when I do the refactor since it'll be a component I want to just edit based on query result.
+
+I'm just going to do the lower nav section which is just a button to the homepage. I considered wiring the page back to the page on which the viewed pokemon was originally displayed but in practice people will use prev/next page and also the search bar, which would make that button useless.
+
+That's done. All that is left in terms of critical functionality is the search bar.

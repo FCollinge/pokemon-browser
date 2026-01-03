@@ -11,7 +11,8 @@ export function BackButton() {
       paddingRight: '16px',
       paddingBottom: '8px',
       paddingLeft: '16px',
-      fontSize: '14px'
+      fontSize: '14px',
+      cursor: 'pointer'
     }}>
       <ArrowLeft size={16} />
       Back
@@ -29,7 +30,8 @@ export function NextButton() {
       paddingRight: '16px',
       paddingBottom: '8px',
       paddingLeft: '16px',
-      fontSize: '14px'
+      fontSize: '14px',
+      cursor: 'pointer'
     }}>
       Next
       <ArrowRight size={16} />

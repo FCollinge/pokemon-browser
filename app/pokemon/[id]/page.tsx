@@ -3,6 +3,8 @@ import Footer from '@/components/footer';
 import {getPokemon, getPokemonSpecies} from '@/lib/api/pokemon';
 import StatBar from '@/components/detailstatbar';
 import {Badge} from '@/components/ui/badge';
+import {ArrowLeft} from 'lucide-react';
+import Link from 'next/link';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -609,13 +611,59 @@ const speedPercent = getStatPercentage('speed');
     </div>
         </div>
 
-        <div style={{
-          width: '1160px',
-          height: '36px',
-          gap: '10px'
-        }}>
-          Lower Nav
-        </div>
+            <div style={{
+            width: '1160px',
+            height: '36px',
+            gap: '10px'
+            }}>
+            <Link href="/" style={{ textDecoration: 'none' }}>
+                <div style={{
+                width: '144px',
+                height: '36px',
+                gap: '8px',
+                paddingTop: '8px',
+                paddingRight: '16px',
+                paddingBottom: '8px',
+                paddingLeft: '16px',
+                borderRadius: '6px',
+                background: '#181A1B',
+                boxShadow: '0px 1px 2px 0px #0000000D',
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer'
+                }}>
+                <div style={{
+                    width: '16px',
+                    height: '16px',
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <ArrowLeft style={{
+                    width: '9.33px',
+                    height: '9.33px',
+                    color: '#FAFAFA',
+                    position: 'absolute',
+                    top: '3.33px',
+                    left: '3.33px'
+                    }} />
+                </div>
+                <div style={{
+                    width: '88px',
+                    height: '20px',
+                    fontFamily: 'Inter',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    lineHeight: '20px',
+                    letterSpacing: '0%',
+                    color: '#FAFAFA'
+                }}>
+                    Return Home
+                </div>
+                </div>
+            </Link>
+            </div>
       </div>
 
       <Separator />
