@@ -116,4 +116,15 @@ I added keyhandling so that I can hit enter to finalise my search.
 
 Next is to do the search results page which shouldn't be a problem.
 
-It took a little while but I got there. It was a lot of stuff I had already seen before. I added a "feature" where searching an empty string returns the user to the home page
+It took a little while but I got there. It was a lot of stuff I had already seen before. I added a "feature" where searching an empty string returns the user to the home page.
+
+My next target is to make those two functions I was talking about earlier: the first big one to calculate list of weaknesses from list of types.
+
+So I wrote out the logic down to two functions which test if an element is strong/weak against another (mult = 1/2 or mult = 2). I thought it would be quite complicated to avoid hardcoding the information but apparently the API does carry that information.
+After careful reflection it'll be much faster to run the website if I do indeed hardcode the strengths/weaknesses since I'll avoid about 1.5 API calls per queried detail page. 
+Okay so after wasting 20 minutes writing my hash map and some test functions it turns out that I should just use the API. Reason for this is the API returns a parsable json with every multiplier and type. I thought the only multipliers were 0.5 1 and 2 but turns out ground -> flying has a multiplier of zero.
+I'm going to commit and add a third elt to the hash map and if my test script is still returning whack results I'll use the API.
+So I figured out that my hashmap not only was missing a whole category of immunity but is also entirely wrong because I used the strengths/weaknesses from PokemonGO which apparently are not the same as the regular game (?)
+Turns out that's also wrong I therefore blame my source.
+
+After rewriting the map and adding the necessary logic I then wasted another 15 minutes because my test script was broken not the source code... It works now though.
