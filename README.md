@@ -86,3 +86,7 @@ In that case I will continue with the detail pages.
 Spent a little time trying to find the description for Bulbasaur but it definitely doesn't exist in the pokeAPI despite it being all over the internet. I have gone with the arbitrary choice of using the descriptions from pokemon Soulsilver.
 
 All done I just want to finish making the containers for this site and then dinner + New year's so I'll stop there.
+
+First session since the new year, hopefully this should be the last for this project but I still have tomorrow to finish. Right now I need to finish making the detail page, after that I need to make the search functionality and iirc that'll be everything. I'll have a look at any refactors and especially making sure the skeleton pages appear in the right spot (probably refactoring them into the actual target pages).
+I also want to look at fixing/scaling the page display to the browser.
+
