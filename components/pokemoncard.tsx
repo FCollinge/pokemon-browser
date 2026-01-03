@@ -68,7 +68,8 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
               <Badge key={type} style={{
                 background: '#181A1B',
                 color: '#FAFAFA',
-                fontSize: '12px'
+                fontSize: '12px',
+                textTransform: 'capitalize'
               }}>
                 {type}
               </Badge>

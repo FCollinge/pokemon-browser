@@ -5,6 +5,7 @@ export interface Pokemon {
   weight: number;
   types: PokemonType[];
   stats: PokemonStat[];
+  abilities: PokemonAbility[];
   sprites: {
     front_default: string;
   };
@@ -52,4 +53,12 @@ export interface PokemonSpecies {
     };
   }[];
   gender_rate: number;
+}
+
+export interface PokemonAbility {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
 }

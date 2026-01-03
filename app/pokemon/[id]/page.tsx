@@ -546,9 +546,40 @@ const speedPercent = getStatPercentage('speed');
         borderRadius: '12px',
         border: '1px solid #E4E4E7',
         background: '#FFFFFF',
-        boxShadow: '0px 1px 2px 0px #0000000D'
+        boxShadow: '0px 1px 2px 0px #0000000D',
+        display: 'flex',
+        flexDirection: 'column'
     }}>
-        Ability Content
+        <div style={{
+            width: '295.5px',
+            height: '32px',
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            fontSize: '24px',
+            lineHeight: '32px',
+            letterSpacing: '-2.5%',
+            color: '#181A1B'
+        }}>
+            Ability
+        </div>
+        <div style={{
+            width: '295.5px',
+            height: '84px',
+            fontFamily: 'Inter',
+            fontSize: '20px',
+            lineHeight: '28px',
+            letterSpacing: '0%',
+            color: '#181A1B'
+        }}>
+            <div style={{ fontWeight: '400' }}>
+                {pokemon.abilities[0]?.ability.name.split('-').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ')}
+            </div>
+            <div style={{ fontWeight: '300', fontStyle: 'italic' }}>
+                (Ability description placeholder for now)
+            </div>
+        </div>
     </div>
     </div>
 
