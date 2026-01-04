@@ -166,3 +166,19 @@ Type badges made into component and added. also added a line to justify the weak
 I've fixed the loading pages (just copy and paste into right location and rename a couple things) and added a spinner that was missing to the home loading page. Note for future: Wrap content in a "Suspense" so the spinner also appears when using the pagination.
 
 Will stop there for today.
+
+So I'm back now at 15:10 looks like I need to do finish item 3 right now wrapping in a suspense. I'll try wrapping the whole block to get it working and then refactor later.
+So the suspense worked by passing currentPage as a key I was able to add my usual spinner as the fallback. It forces react to remount the page. After playing around with it I note two things: I actually haven't done any skeletons so big problem and that the website is slow and I want to cache api requests. I never noticed that because chrome automatically caches the entire state, but use of the pagination and home (detail) buttons forces new api calls. I've read that you can set a cache with an expiry but I probably want to try writing something fancier.
+
+// Commit ends here these are just thoughts
+
+So I had a quick think about the cache and I've realised that per the assignment there isn't really anything to say that I can't just fetch the entire website (in a queue with injections for specific details/searches) but even then I could probably load the first page and download the entire rest of the required api information before a user even had time to move to a second page - or even the time they would wait would have been reduced by exactly the duration of their inactivity on first reaching the site.
+I had misunderstood "rendering dynamically" as dynamically fetching.
+Logically this would make the website extremely fast (and eliminate loaders/skeletons almost entirely) for anyone with a modern average internet speed, and wouldn't affect people with a slower connection. It would be bad for people using cellular data though.
+
+So I've come to the conclusion that for the cache I want, on request of a page of the website (because I can access any page number from the aaddress), I should fetch the data required to display it (starting with pokemon list) and then build a queue do fetch every single piece of data I will need, bumping the priority for the pages currentPage+-1 as they are the most likely next visits as well as bumping any other data (for example search results which would be against the already queried pokemon list) to the top of the queue.
+
+The final thought on this was that as I wrote just above it would be bad for people using cellular data, but apparently there's a way to collect that data from the user's client info on certain browsers. I've read that the standard is to check for that otherwise fallback on the data efficient version.
+
+// end of note and back to items 4. and 5. from lines 159-160
+

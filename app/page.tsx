@@ -6,10 +6,39 @@ import PokemonCard from '@/components/pokemoncard';
 import SearchBar from '@/components/searchbar';
 import {getPokemonList, getPokemon} from '@/lib/api/pokemon';
 import Link from 'next/link';
+import {Suspense} from 'react';
+import {Loader2} from 'lucide-react';
 
 export default async function LandingPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const params = await searchParams;
   const currentPage = parseInt(params.page || '1');
+  
+  return (
+    <div style={{ background: '#FFFFFF' }}>
+      <Hero />
+      <Separator />
+      
+      <Suspense key={currentPage} fallback={
+        <div style={{
+          width: '1440px',
+          height: '1465px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
+        </div>
+      }>
+        <PokemonListContent currentPage={currentPage} />
+      </Suspense>
+      
+      <Separator />
+      <Footer />
+    </div>
+  );
+}
+  
+async function PokemonListContent({ currentPage }: { currentPage: number }) {
   const limit = 12;
   const offset = (currentPage - 1) * limit;
   const listData = await getPokemonList(limit, offset);
@@ -23,16 +52,13 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
       types: details.types.map(t => t.type.name)
     };
   });
-  
+
   const pokemonList = await Promise.all(pokemonPromises);
   
   return (
     <div style={{
       background: '#FFFFFF'
     }}>
-      <Hero />
-      <Separator />
-      
       <div style={{
         width: '1440px',
         height: '1465px',
@@ -109,9 +135,6 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           </Link>
         </div>
       </div>
-
-      <Separator />
-      <Footer />
     </div>
   );
 }
