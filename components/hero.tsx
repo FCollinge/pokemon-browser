@@ -4,20 +4,19 @@ export default function Hero() {
       maxWidth: '1440px',
       width: '100%',
       margin: '0 auto',
-      height: '244px',
+      padding: '48px 24px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
     }}>
       <div style={{
         maxWidth: '525px',
-        height: '122px',
+        width: '100%',
         gap: '8px',
         display: 'flex',
         flexDirection: 'column'
       }}>
         <h1 style={{
-          height: '78px',
           fontFamily: 'Inter',
           fontWeight: '600',
           fontSize: '60px',
@@ -29,7 +28,6 @@ export default function Hero() {
           Pokémon Browser
         </h1>
         <p style={{
-          height: '36px',
           fontFamily: 'Inter',
           fontWeight: '600',
           fontSize: '30px',

@@ -27,7 +27,7 @@ export default async function LandingPage({
         <div style={{
           maxWidth: '1440px',
           width: '100%',
-          padding: '0 140px',
+          padding: '0 24px',
           height: '1465px',
           display: 'flex',
           alignItems: 'center',
@@ -100,7 +100,7 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
         width: '100%',
         minHeight: '1465px',
         gap: '48px',
-        padding: '0 140px',
+        padding: '0 24px',
         margin: '0 auto'
       }}>
         <div style={{
