@@ -229,3 +229,7 @@ Easy enough. Could probably make it faster but that's just more hardcoding.
 I really don't want to go back to responsive design just yet so I'll do the error handling. The only errors I've spotted are for sprites. I'll try and figure out if it's worth writing error handling everywhere.
 I'll start with the sprites. There is a repo with some of the missing sprites. The guy who made the pokeAPI wrote in 2015 he just scraped them so I think the sanest thing to do is to just resort to a placeholder image.
 They're all awful so I'll just reuse the cherish ball icon.
+
+The pokemon without sprites also fail to fetch species so I need to handle that error as well.
+I added sort of trailing fallback so that clicking on a broken pokemon still shows as much information as possible.
+And finally just the browser

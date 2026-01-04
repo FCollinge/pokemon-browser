@@ -81,7 +81,7 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
       return {
         id: details.id,
         name: details.name,
-        image: details.sprites.front_default,
+        image: details.sprites.front_default || '/cherish-ball.png',
         types: details.types.map(t => t.type.name)
       };
     });
