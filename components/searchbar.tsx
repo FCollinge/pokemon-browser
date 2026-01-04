@@ -10,7 +10,7 @@ export default function SearchBar() {
 
   const doSearch = () => {
     if (query.trim()) {
-      router.push(`/search?q=${query.trim()}`);
+      router.push(`/?q=${query.trim()}`);
     } else {
       router.push('/');
     }

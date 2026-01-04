@@ -182,3 +182,8 @@ The final thought on this was that as I wrote just above it would be bad for peo
 
 // end of note and back to items 4. and 5. from lines 159-160
 
+So to consolidate the pages I wanted to merge the browser and search pages because they're extremely similar. 
+To do so I need to add a query parameter to the landing page and check whether it is present to decide to show a search result or not. I'd also be able to condition which sub-header I display, change the footer height and change the pagination targets. 
+After that I just need to update the suspense key and search bar.
+
+So first I found out that search params are commutative. I had to make sure that when initiating a search I should reset to page 1 to avoid targetting (likely) unexisting pages. I added hasNextPage to disable the next button in case the page doesn't exist.

@@ -9,16 +9,21 @@ import Link from 'next/link';
 import {Suspense} from 'react';
 import {Loader2} from 'lucide-react';
 
-export default async function LandingPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+export default async function LandingPage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ page?: string; q?: string }> 
+}) {
   const params = await searchParams;
   const currentPage = parseInt(params.page || '1');
+  const query = params.q || '';
   
   return (
     <div style={{ background: '#FFFFFF' }}>
       <Hero />
       <Separator />
       
-      <Suspense key={currentPage} fallback={
+      <Suspense key={`${query}-${currentPage}`} fallback={
         <div style={{
           width: '1440px',
           height: '1465px',
@@ -29,31 +34,60 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
         </div>
       }>
-        <PokemonListContent currentPage={currentPage} />
+        <PokemonListContent currentPage={currentPage} query={query} />
       </Suspense>
       
       <Separator />
-      <Footer />
+      <Footer height={query ? "215px" : undefined} />
     </div>
   );
 }
   
-async function PokemonListContent({ currentPage }: { currentPage: number }) {
+async function PokemonListContent({ currentPage, query }: { currentPage: number; query: string }) {
   const limit = 12;
-  const offset = (currentPage - 1) * limit;
-  const listData = await getPokemonList(limit, offset);
-  const pokemonPromises = listData.results.map(async (pokemon) => {
-    const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
-    const details = await getPokemon(id);
-    return {
-      id: details.id,
-      name: details.name,
-      image: details.sprites.front_default,
-      types: details.types.map(t => t.type.name)
-    };
-  });
+  let pokemonList: Array<{id: number, name: string, image: string, types: string[]}> = [];
+  let totalResults = 0;
 
-  const pokemonList = await Promise.all(pokemonPromises);
+  if (query) {
+    // Search mode: fetch all Pokemon and filter
+    const allPokemon = await getPokemonList(2000, 0);
+    const filtered = allPokemon.results.filter(p => p.name.includes(query.toLowerCase()));
+    totalResults = filtered.length;
+    
+    const offset = (currentPage - 1) * limit;
+    const paginatedResults = filtered.slice(offset, offset + limit);
+    
+    const pokemonPromises = paginatedResults.map(async (pokemon) => {
+      const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
+      const details = await getPokemon(id);
+      return {
+        id: details.id,
+        name: details.name,
+        image: details.sprites.front_default,
+        types: details.types.map(t => t.type.name)
+      };
+    });
+    
+    pokemonList = await Promise.all(pokemonPromises);
+  } else {
+    // Browse mode: paginated fetch
+    const offset = (currentPage - 1) * limit;
+    const listData = await getPokemonList(limit, offset);
+    const pokemonPromises = listData.results.map(async (pokemon) => {
+      const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
+      const details = await getPokemon(id);
+      return {
+        id: details.id,
+        name: details.name,
+        image: details.sprites.front_default,
+        types: details.types.map(t => t.type.name)
+      };
+    });
+
+    pokemonList = await Promise.all(pokemonPromises);
+  }
+
+  const hasNextPage = query ? totalResults > currentPage * limit : true;
   
   return (
     <div style={{
@@ -74,16 +108,16 @@ async function PokemonListContent({ currentPage }: { currentPage: number }) {
           alignItems: 'center'
         }}>
           <h2 style={{
-            width: '241px',
+            width: query ? '410px' : '241px',
             height: '36px',
             fontFamily: 'Inter',
             fontWeight: '600',
             fontSize: '30px',
             lineHeight: '36px',
             letterSpacing: '-2.5%',
-            color: '#09090B'
+            color: query ? '#181A1B' : '#09090B'
           }}>
-            Explore Pokémon
+            {query ? `Search Results for '${query}'` : 'Explore Pokémon'}
           </h2>
 
           <div style={{
@@ -126,13 +160,18 @@ async function PokemonListContent({ currentPage }: { currentPage: number }) {
             opacity: currentPage === 1 ? 0.5 : 1,
             pointerEvents: currentPage === 1 ? 'none' : 'auto'
           }}>
-            <Link href={`/?page=${currentPage - 1}`}>
+            <Link href={query ? `/?q=${query}&page=${currentPage - 1}` : `/?page=${currentPage - 1}`}>
               <BackButton />
             </Link>
           </div>
-          <Link href={`/?page=${currentPage + 1}`}>
-            <NextButton />
-          </Link>
+          <div style={{ 
+            opacity: !hasNextPage ? 0.5 : 1,
+            pointerEvents: !hasNextPage ? 'none' : 'auto'
+          }}>
+            <Link href={query ? `/?q=${query}&page=${currentPage + 1}` : `/?page=${currentPage + 1}`}>
+              <NextButton />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
