@@ -240,3 +240,18 @@ So that's two little fixes
 Something is still wrong with the [id]/page 
 
 Really crawling here
+
+I had made the mistake of writing things like padding: '36 48px' which is invalid syntax. I hadn't picked up on it because I was writing things like '0 140px'. But the CSS just ignores the value if no unit is given.
+
+I spent a long time trying to reconciliate the phone/desktop views but I think I will give up for now and think about it. I'll attack the cache.
+
+I was just trying to fix a gap on the [id] page and I just can't do it... I've tried everything.
+
+That's really frustrating I was really hoping to finish today but I got so caught up in this UI stuff.
+
+I hope I'll be able to fix it tomorrow.
+Okay I stuck with it and managed to solve it (l. 114)
+
+My pagination loading spinner seems to have broken so that'll be the last fix for tonight
+
+Okay well after having a look around there's loads of UI spacing that broke. I am considering using git cherry-pick on an old version of the repo to avoid all the muck created by trying to render the app on small screens

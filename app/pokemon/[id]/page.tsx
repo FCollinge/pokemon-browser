@@ -75,12 +75,14 @@ const abilityDetails = await Promise.all(
       margin: '0 auto',
       minHeight: '1704px',
       gap: '48px',
-      background: '#FFFFFF'
+      background: '#FFFFFF',
+      display: 'flex',
+      flexDirection: 'column'
     }}>
       <div style={{
         maxWidth: '1440px',
         width: '100%',
-        minHeight: '460px'
+        height: 'auto'
       }}>
         <div style={{
           maxWidth: '1440px',
@@ -109,8 +111,8 @@ const abilityDetails = await Promise.all(
 
         <div style={{
           maxWidth: '1440px',
+          height: '320px',
           width: '100%',
-          minHeight: '380px',
           position: 'relative'
         }}>
           <div style={{
@@ -340,7 +342,7 @@ const abilityDetails = await Promise.all(
     maxWidth: '391.5px',
     width: '100%',
     gap: '32px',
-    padding: '36 48px',
+    padding: '36px 48px',
     borderRadius: '12px',
     border: '1px solid #E4E4E7',
     background: '#FFFFFF',
@@ -429,7 +431,7 @@ const abilityDetails = await Promise.all(
         maxWidth: '391.5px',
         width: '100%',
         gap: '12px',
-        padding: '36 48px',
+        padding: '36px 48px',
         borderRadius: '12px',
         border: '1px solid #E4E4E7',
         background: '#FFFFFF',
@@ -489,7 +491,7 @@ const abilityDetails = await Promise.all(
     maxWidth: '807px',
     width: '100%',
     gap: '12px',
-    padding: '36 48px',
+    padding: '36px 48px',
     borderRadius: '12px',
     border: '1px solid #E4E4E7',
     background: '#FFFFFF',

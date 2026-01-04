@@ -28,6 +28,7 @@ export default async function LandingPage({
           maxWidth: '1440px',
           width: '100%',
           padding: '0 24px',
+          margin: '0 auto',
           height: '1465px',
           display: 'flex',
           alignItems: 'center',
