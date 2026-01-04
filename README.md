@@ -187,3 +187,27 @@ To do so I need to add a query parameter to the landing page and check whether i
 After that I just need to update the suspense key and search bar.
 
 So first I found out that search params are commutative. I had to make sure that when initiating a search I should reset to page 1 to avoid targetting (likely) unexisting pages. I added hasNextPage to disable the next button in case the page doesn't exist.
+
+So I just have to change all the widths to maxWidth and add centering.
+I've had to do that so many times. Fortunately regex made it easier.
+I set smaller (now minimal because of the previous step) padding for people with smaller screens removing the fixed 140px
+
+Okay so I found out you can emulate a phone with F12 and it didn't work. 
+So it's because I didn't make *all* of the container sizes responsive: the subelements are basically overflowing out of their containers which was quite hard to figure out.
+
+I have spent 45 minutes since I last wrote that note and problem after problem have appeared and I still cannot make it work on smaller screen sizes.
+
+So turns out I wasn't really using minHeight which I hadn't realised would force objects to scale. I'm finally moving but my neck hurts. Also I've started using flex wraps for a lot of items.
+I guess it's good practice.
+
+So it's even better than good practice. This has taught me that children match their containers. If I had to redo this project I would save at least 4-6 hours just on this, I had defined every single dimension according to the figma. I guess it gave me courage to carry on but I should have read more before starting...
+I changed how the 'pokemonList' displays with repeat using auto-fit
+Two notes: I can probably simplify the body from [id]/page by removing divisions so that (maybe?) it will fit better on smaller screen sizes. I don't know yet how I will conserve the regular layout if I do that.
+I need to change the game version for the descriptions because some of the early pokemon don't have any, or rather change my strategy for querying the descriptions.
+I need to add error handling for some pokemon (a lot of sprite queries come back empty). I will probably wait until I do the cache.
+
+So while reviewing the commit I found it still doesn't work amazing on even smaller screens, a lot of things end up overlapping and not rendering nicely so I will finish this commit and I'll leave this as a note to fix that later.
+I did a bit more testing with screenfly and yeah it's still unreliable.
+
+
+
