@@ -221,6 +221,8 @@ From the notes:
 
 so we're going 5 6 4 3 1 (2)
 
+5 is easily done because all I need to do is get the list of games referenced on the api once and make a list of them going from newest to oldest. That'll mean I'll get the most recent description each time.
+So I got the list of games from the api and their generation and ranked them
 
 Easy enough. Could probably make it faster but that's just more hardcoding.
 
