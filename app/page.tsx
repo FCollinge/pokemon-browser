@@ -25,7 +25,9 @@ export default async function LandingPage({
       
       <Suspense key={`${query}-${currentPage}`} fallback={
         <div style={{
-          width: '1440px',
+          maxWidth: '1440px',
+          width: '100%',
+          padding: '0 140px',
           height: '1465px',
           display: 'flex',
           alignItems: 'center',
@@ -94,21 +96,24 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
       background: '#FFFFFF'
     }}>
       <div style={{
-        width: '1440px',
-        height: '1465px',
+        maxWidth: '1440px',
+        width: '100%',
+        minHeight: '1465px',
         gap: '48px',
-        paddingRight: '140px',
-        paddingLeft: '140px'
+        padding: '0 140px',
+        margin: '0 auto'
       }}>
         <div style={{
-          width: '1160px',
-          height: '40px',
+          maxWidth: '1160px',
+          width: '100%',
+          minHeight: '40px',
           justifyContent: 'space-between',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          margin: '0 auto'
         }}>
           <h2 style={{
-            width: query ? '410px' : '241px',
+            maxWidth: query ? '410px' : '241px',
             height: '36px',
             fontFamily: 'Inter',
             fontWeight: '600',
@@ -121,7 +126,8 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
           </h2>
 
           <div style={{
-            width: '342px',
+            maxWidth: '342px',
+            width: '100%',
             height: '40px',
             gap: '12px',
             display: 'flex',
@@ -132,11 +138,12 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
         </div>
 
         <div style={{
-          width: '1160px',
-          height: '1293px',
+          maxWidth: '1160px',
+          width: '100%',
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '32px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(266px, 1fr))',
+          gap: '32px',
+          margin: '0 auto'
         }}>
           {pokemonList.map((pokemon) => (
             <PokemonCard
@@ -150,11 +157,13 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
         </div>
 
         <div style={{
-          width: '1160px',
-          height: '36px',
+          maxWidth: '1160px',
+          width: '100%',
+          minHeight: '36px',
           gap: '16px',
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          margin: '0 auto'
         }}>
           <div style={{ 
             opacity: currentPage === 1 ? 0.5 : 1,

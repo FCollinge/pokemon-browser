@@ -14,14 +14,16 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
   return (
     <Link href={`/pokemon/${id}`} style={{ textDecoration: 'none' }}>
       <Card style={{
-        width: '266px',
+        maxWidth: '266px',
+        width: '100%',
         height: '391px',
         boxShadow: '0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A',
         padding: '0',
         overflow: 'hidden'
       }}>
         <div style={{
-          width: '266px',
+          maxWidth: '266px',
+          width: '100%',
           height: '224px',
           background: '#F4F4F5',
           display: 'flex',
@@ -41,7 +43,8 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
         </div>
 
         <div style={{
-          width: '266px',
+          maxWidth: '266px',
+          width: '100%',
           height: '167px',
           padding: '24px',
           gap: '6px',

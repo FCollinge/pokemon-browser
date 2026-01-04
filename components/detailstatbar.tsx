@@ -8,7 +8,8 @@ export default function StatBar({ title, percentage }: StatBarProps) {
 
   return (
     <div style={{
-      width: '711px',
+      maxWidth: '711px',
+      width: '100%',
       height: '32px',
       gap: '24px',
       display: 'flex',
@@ -16,7 +17,7 @@ export default function StatBar({ title, percentage }: StatBarProps) {
     }}>
       {/* Title */}
       <div style={{
-        width: '200px',
+        minWidth: '200px',
         height: '32px',
         fontFamily: 'Inter',
         fontWeight: '600',
@@ -32,15 +33,18 @@ export default function StatBar({ title, percentage }: StatBarProps) {
 
       {/* Process */}
       <div style={{
-        width: '487px',
+        maxWidth: '487px',
+        width: '100%',
         height: '16px',
         gap: '10px',
         borderRadius: '9999px',
-        position: 'relative'
+        position: 'relative',
+        flex: 1
       }}>
         {/* Area */}
         <div style={{
-          width: '487px',
+          maxWidth: '487px',
+          width: '100%',
           height: '16px',
           borderRadius: '9999px',
           background: '#F4F4F5',

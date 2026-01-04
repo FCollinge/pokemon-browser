@@ -25,7 +25,8 @@ export default function SearchBar() {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && doSearch()}
         style={{
-          width: '251px',
+          maxWidth: '251px',
+          width: '100%',
           height: '36px',
           paddingTop: '4px',
           paddingRight: '12px',
@@ -40,7 +41,7 @@ export default function SearchBar() {
       <Button 
         onClick={doSearch}
         style={{
-          width: '79px',
+          minWidth: '79px',
           height: '36px',
           paddingTop: '8px',
           paddingRight: '16px',

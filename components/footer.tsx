@@ -1,7 +1,9 @@
 export default function Footer({ height = '244px' }: { height?: string }) {
   return (
     <div style={{
-      width: '1440px',
+      maxWidth: '1440px',
+      width: '100%',
+      margin: '0 auto',
       height: height,
       background: '#FFFFFF',
       borderTop: '1px solid black',

@@ -66,18 +66,21 @@ const abilityDetails = await Promise.all(
 
   return (
     <div style={{
-      width: '1440px',
-      height: '1704px',
+      maxWidth: '1440px',
+      width: '100%',
+      margin: '0 auto',
+      minHeight: '1704px',
       gap: '48px',
       background: '#FFFFFF'
     }}>
       <div style={{
-        width: '1440px',
-        height: '460px'
+        maxWidth: '1440px',
+        width: '100%',
+        minHeight: '460px'
       }}>
         <div style={{
-          width: '1440px',
-          height: '80px',
+          maxWidth: '1440px',
+          width: '100%',
           gap: '10px',
           borderBottom: '1px solid black',
           paddingRight: '64px',
@@ -87,7 +90,7 @@ const abilityDetails = await Promise.all(
           alignItems: 'center'
         }}>
           <h1 style={{
-            width: '202px',
+            maxWidth: '202px',
             height: '32px',
             fontFamily: 'Inter',
             fontWeight: '600',
@@ -101,20 +104,22 @@ const abilityDetails = await Promise.all(
         </div>
 
         <div style={{
-          width: '1440px',
-          height: '380px',
+          maxWidth: '1440px',
+          width: '100%',
+          minHeight: '380px',
           position: 'relative'
         }}>
           <div style={{
-            width: '1440px',
-            height: '168px',
+            maxWidth: '1440px',
+            width: '100%',
+            minHeight: '168px',
             background: '#18181B33'
           }}>
           </div>
 
           <div style={{
-            width: '243px',
-            height: '260px',
+            maxWidth: '243px',
+            width: '100%',
             gap: '16px',
             display: 'flex',
             flexDirection: 'column',
@@ -126,7 +131,8 @@ const abilityDetails = await Promise.all(
           }}>
             {/* Pokemon Avatar */}
             <div style={{
-              width: '208px',
+              maxWidth: '208px',
+              width: '100%',
               height: '208px',
               borderRadius: '9999px',
               border: '4px solid #FAFAFA',
@@ -134,7 +140,8 @@ const abilityDetails = await Promise.all(
               position: 'relative'
             }}>
               <div style={{
-                width: '208px',
+                maxWidth: '208px',
+                width: '100%',
                 height: '208px',
                 borderRadius: '9999px',
                 background: '#F4F4F5',
@@ -158,7 +165,8 @@ const abilityDetails = await Promise.all(
 
             {/* Name and number */}
             <div style={{
-              width: '243px',
+              maxWidth: '243px',
+              width: '100%',
               height: '36px',
               gap: '12px',
               display: 'flex',
@@ -166,7 +174,7 @@ const abilityDetails = await Promise.all(
             }}>
               {/* Pokemon name */}
               <div style={{
-                width: '140px',
+                maxWidth: '140px',
                 height: '36px',
                 fontFamily: 'Inter',
                 fontWeight: '600',
@@ -185,7 +193,7 @@ const abilityDetails = await Promise.all(
 
               {/* Pokemon number */}
               <div style={{
-                width: '91px',
+                maxWidth: '91px',
                 height: '36px',
                 fontFamily: 'Inter',
                 fontWeight: '600',
@@ -206,15 +214,17 @@ const abilityDetails = await Promise.all(
       </div>
 
       <div style={{
-        width: '1440px',
-        height: '883px',
+        maxWidth: '1440px',
+        width: '100%',
+        minHeight: '883px',
         gap: '40px',
-        paddingRight: '140px',
-        paddingLeft: '140px'
+        padding: '0 140px',
+        margin: '0 auto'
       }}>
         <div style={{
-        width: '1160px',
-        height: '133px',
+        maxWidth: '1160px',
+        width: '100%',
+        minHeight: '133px',
         gap: '28px',
         paddingRight: '12px',
         paddingLeft: '12px',
@@ -261,7 +271,8 @@ const abilityDetails = await Promise.all(
 
         {/* Description */}
         <div style={{
-        width: '934.27px',
+        maxWidth: '934.27px',
+        width: '100%',
         height: '56px',
         fontFamily: 'Inter',
         fontSize: '16px',
@@ -275,15 +286,16 @@ const abilityDetails = await Promise.all(
         </div>
 
         <div style={{
-        width: '1160px',
-        height: '634px',
+        maxWidth: '1160px',
+        width: '100%',
         gap: '24px',
-        display: 'flex'
+        display: 'flex',
+        flexWrap: 'wrap' // for moile stacking
         }}>
         {/* Left Information Sidebar (Lower Body Child) */}
         <div style={{
-        width: '329px',
-        height: '634px',
+        maxWidth: '329px',
+        width: '100%',
         gap: '32px',
         paddingTop: '36px',
         paddingRight: '48px',
@@ -303,23 +315,24 @@ const abilityDetails = await Promise.all(
 
     {/* Right Information Section (Child of Body) */}
     <div style={{
-    width: '807px',
-    height: '634px',
+    maxWidth: '807px',
+    width: '100%',
     gap: '24px',
     display: 'flex',
     flexDirection: 'column'
     }}>
     {/* Type, Weaknesses and Ability (top right section; child of body) */}
     <div style={{
-    width: '807px',
-    height: '286px',
+    maxWidth: '807px',
+    width: '100%',
     gap: '24px',
-    display: 'flex'
+    display: 'flex',
+    flexWrap: 'wrap'
     }}>
     {/* Type and Weaknesses */}
     <div style={{
-    width: '391.5px',
-    height: '286px',
+    maxWidth: '391.5px',
+    width: '100%',
     gap: '32px',
     paddingTop: '36px',
     paddingRight: '48px',
@@ -334,14 +347,16 @@ const abilityDetails = await Promise.all(
     }}>
     {/* Type */}
     <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '72px',
         gap: '12px',
         display: 'flex',
         flexDirection: 'column'
     }}>
         <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '32px',
         fontFamily: 'Inter',
         fontWeight: '600',
@@ -353,7 +368,8 @@ const abilityDetails = await Promise.all(
         Type
         </div>
         <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '28px',
         gap: '12px',
         paddingTop: '4px',
@@ -368,14 +384,16 @@ const abilityDetails = await Promise.all(
 
     {/* Weaknesses */}
     <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '72px',
         gap: '12px',
         display: 'flex',
         flexDirection: 'column'
     }}>
         <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '32px',
         fontFamily: 'Inter',
         fontWeight: '600',
@@ -387,7 +405,8 @@ const abilityDetails = await Promise.all(
         Weaknesses
         </div>
         <div style={{
-        width: '295.5px',
+        maxWidth: '295.5px',
+        width: '100%',
         height: '28px',
         gap: '12px',
         paddingTop: '4px',
@@ -404,8 +423,8 @@ const abilityDetails = await Promise.all(
 
     {/* Ability */}
     <div style={{
-        width: '391.5px',
-        height: '286px',
+        maxWidth: '391.5px',
+        width: '100%',
         gap: '12px',
         paddingTop: '36px',
         paddingRight: '48px',
@@ -419,7 +438,8 @@ const abilityDetails = await Promise.all(
         flexDirection: 'column'
     }}>
         <div style={{
-            width: '295.5px',
+            maxWidth: '295.5px',
+            width: '100%',
             height: '32px',
             fontFamily: 'Inter',
             fontWeight: '600',
@@ -431,7 +451,8 @@ const abilityDetails = await Promise.all(
         {abilityDetails.length === 2 ? 'Abilities' : 'Ability'}
         </div>
         <div style={{
-            width: '295.5px',
+            maxWidth: '295.5px',
+            width: '100%',
             height: '84px',
             fontFamily: 'Inter',
             fontSize: '20px',
@@ -465,8 +486,8 @@ const abilityDetails = await Promise.all(
 
     {/* Statistics Chart */}
     <div style={{
-    width: '807px',
-    height: '324px',
+    maxWidth: '807px',
+    width: '100%',
     gap: '12px',
     paddingTop: '36px',
     paddingRight: '48px',
@@ -487,13 +508,15 @@ const abilityDetails = await Promise.all(
         </div>
 
             <div style={{
-            width: '1160px',
+            maxWidth: '1160px',
+            width: '100%',
             height: '36px',
             gap: '10px'
             }}>
             <Link href="/" style={{ textDecoration: 'none' }}>
                 <div style={{
-                width: '144px',
+                maxWidth: '144px',
+                width: '100%',
                 height: '36px',
                 gap: '8px',
                 paddingTop: '8px',
@@ -508,7 +531,6 @@ const abilityDetails = await Promise.all(
                 cursor: 'pointer'
                 }}>
                 <div style={{
-                    width: '16px',
                     height: '16px',
                     position: 'relative',
                     display: 'flex',
@@ -516,7 +538,6 @@ const abilityDetails = await Promise.all(
                     justifyContent: 'center'
                 }}>
                     <ArrowLeft style={{
-                    width: '9.33px',
                     height: '9.33px',
                     color: '#FAFAFA',
                     position: 'absolute',
@@ -525,7 +546,6 @@ const abilityDetails = await Promise.all(
                     }} />
                 </div>
                 <div style={{
-                    width: '88px',
                     height: '20px',
                     fontFamily: 'Inter',
                     fontWeight: '500',

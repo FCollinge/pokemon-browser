@@ -4,9 +4,10 @@ import Footer from '@/components/footer';
 
 export default function LoadingDetailPage() {
   return (
-    <div style={{width: '1440px', height: '1666px', background: '#FFFFFF'}}>
+    <div style={{maxWidth: '1440px', width: '100%', margin: '0 auto', height: '1666px', background: '#FFFFFF'}}>
       <div style={{
-        width: '1440px', 
+        maxWidth: '1440px',
+        width: '100%',
         height: '80px', 
         background: '#FFFFFF',
         borderBottom: '1px solid black',
@@ -27,7 +28,8 @@ export default function LoadingDetailPage() {
       </div>
 
       <div style={{
-        width: '1440px',
+        maxWidth: '1440px',
+        width: '100%',
         height: '1225px',
         background: '#FFFFFF',
         display: 'flex',
