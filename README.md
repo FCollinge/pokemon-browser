@@ -238,5 +238,7 @@ They're all awful so I'll just reuse the cherish ball icon.
 
 The pokemon without sprites also fail to fetch species so I need to handle that error as well.
 I added sort of trailing fallback so that clicking on a broken pokemon still shows as much information as possible.
-And finally just the browser
+And finally just the browser.
+
+Going to do some more work on the responsive design later but dinner break.
 
