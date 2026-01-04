@@ -209,5 +209,17 @@ I need to add error handling for some pokemon (a lot of sprite queries come back
 So while reviewing the commit I found it still doesn't work amazing on even smaller screens, a lot of things end up overlapping and not rendering nicely so I will finish this commit and I'll leave this as a note to fix that later.
 I did a bit more testing with screenfly and yeah it's still unreliable.
 
+Nothing could have prepared me for how tedious that was. It's a lesson learned for sure, but I knew neither js nor figma and I took the route that I could understand the best.
+
+From the notes:
+1. skeletons <- already have spinners but could be an upgrade
+2. simplify detail page body <- might not be necessary because of 6
+3. The caching <- might as well do it last
+4. error handling esp. for sprites but can probably make a blanket <- needs to be done before caching
+5. Strategy descriptions <- easiest
+6. finish responsive design <- tedious 
+
+so we're going 5 6 4 3 1 (2)
+
 
 
