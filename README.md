@@ -226,7 +226,13 @@ So I got the list of games from the api and their generation and ranked them
 
 Easy enough. Could probably make it faster but that's just more hardcoding.
 
+
 5 is easily done because all I need to do is get the list of games referenced on the api once and make a list of them going from newest to oldest. That'll mean I'll get the most recent description each time.
 So I got the list of games from the api and their generation and ranked them
 
 Easy enough. Could probably make it faster but that's just more hardcoding.
+
+I really don't want to go back to responsive design just yet so I'll do the error handling. The only errors I've spotted are for sprites. I'll try and figure out if it's worth writing error handling everywhere.
+I'll start with the sprites. There is a repo with some of the missing sprites. The guy who made the pokeAPI wrote in 2015 he just scraped them so I think the sanest thing to do is to just resort to a placeholder image.
+They're all awful so I'll just reuse the cherish ball icon.
+
