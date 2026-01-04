@@ -8,15 +8,14 @@ import Link from 'next/link';
 import {getWeaknesses} from '@/lib/weaknesses';
 import Image from 'next/image';
 import DetailSidebarItem from '@/components/detailsidebaritem';
+import {descriptionFinder} from '@/lib/descriptions';
 
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const pokemon = await getPokemon(id);
   const species = await getPokemonSpecies(id);
   
-  const description = species.flavor_text_entries
-    .find(entry => entry.language.name === 'en' && entry.version.name === 'shield')
-    ?.flavor_text.replace(/\f/g, ' ') || 'No description available.';
+  const description = descriptionFinder(species.flavor_text_entries);
 
   const category = species.genera
     .find(g => g.language.name === 'en')

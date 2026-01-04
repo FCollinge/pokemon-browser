@@ -209,5 +209,8 @@ I need to add error handling for some pokemon (a lot of sprite queries come back
 So while reviewing the commit I found it still doesn't work amazing on even smaller screens, a lot of things end up overlapping and not rendering nicely so I will finish this commit and I'll leave this as a note to fix that later.
 I did a bit more testing with screenfly and yeah it's still unreliable.
 
+5 is easily done because all I need to do is get the list of games referenced on the api once and make a list of them going from newest to oldest. That'll mean I'll get the most recent description each time.
+So I got the list of games from the api and their generation and ranked them
 
+Easy enough. Could probably make it faster but that's just more hardcoding.
 
