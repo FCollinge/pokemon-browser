@@ -235,3 +235,8 @@ I added sort of trailing fallback so that clicking on a broken pokemon still sho
 And finally just the browser.
 
 Going to do some more work on the responsive design later but dinner break.
+
+So that's two little fixes
+Something is still wrong with the [id]/page 
+
+Really crawling here

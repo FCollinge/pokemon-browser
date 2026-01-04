@@ -223,7 +223,9 @@ const abilityDetails = await Promise.all(
         minHeight: '883px',
         gap: '40px',
         padding: '0 140px',
-        margin: '0 auto'
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         <div style={{
         maxWidth: '1160px',
@@ -294,7 +296,7 @@ const abilityDetails = await Promise.all(
         width: '100%',
         gap: '24px',
         display: 'flex',
-        flexWrap: 'wrap' // for moile stacking
+        flexWrap: 'wrap' // for mobile stacking
         }}>
         {/* Left Information Sidebar (Lower Body Child) */}
         <div style={{
@@ -338,10 +340,7 @@ const abilityDetails = await Promise.all(
     maxWidth: '391.5px',
     width: '100%',
     gap: '32px',
-    paddingTop: '36px',
-    paddingRight: '48px',
-    paddingBottom: '36px',
-    paddingLeft: '48px',
+    padding: '36 48px',
     borderRadius: '12px',
     border: '1px solid #E4E4E7',
     background: '#FFFFFF',
@@ -430,10 +429,7 @@ const abilityDetails = await Promise.all(
         maxWidth: '391.5px',
         width: '100%',
         gap: '12px',
-        paddingTop: '36px',
-        paddingRight: '48px',
-        paddingBottom: '36px',
-        paddingLeft: '48px',
+        padding: '36 48px',
         borderRadius: '12px',
         border: '1px solid #E4E4E7',
         background: '#FFFFFF',
@@ -493,10 +489,7 @@ const abilityDetails = await Promise.all(
     maxWidth: '807px',
     width: '100%',
     gap: '12px',
-    paddingTop: '36px',
-    paddingRight: '48px',
-    paddingBottom: '36px',
-    paddingLeft: '48px',
+    padding: '36 48px',
     borderRadius: '12px',
     border: '1px solid #E4E4E7',
     background: '#FFFFFF',
