@@ -13,25 +13,30 @@ import {descriptionFinder} from '@/lib/descriptions';
 export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const pokemon = await getPokemon(id);
-  const species = await getPokemonSpecies(id);
   
-  const description = descriptionFinder(species.flavor_text_entries);
+  let species;
+  try {
+    species = await getPokemonSpecies(id);
+  } catch {
+    species = null;
+  }
+  
+  const description = species ? descriptionFinder(species.flavor_text_entries) : 'No description available.';
 
-  const category = species.genera
-    .find(g => g.language.name === 'en')
+  const category = species?.genera
+    ?.find(g => g.language.name === 'en')
     ?.genus.slice(0, -8) || 'Unknown';
 
-    const heightInMeters = (pokemon.height / 10).toFixed(1);
+  const heightInMeters = (pokemon.height / 10).toFixed(1);
+  const weightInKg = (pokemon.weight / 10).toFixed(1);
 
-    const weightInKg = (pokemon.weight / 10).toFixed(1);
-
-    const getGender = (rate: number) => {
+  const getGender = (rate: number) => {
     if (rate === -1) return 'Genderless';
     if (rate === 0) return 'Male only';
     if (rate === 8) return 'Female only';
     return 'Male / Female';
-    };
-    const gender = getGender(species.gender_rate);
+  };
+  const gender = species ? getGender(species.gender_rate) : 'Unknown';
 
 const getStatPercentage = (statName: string) => {
 const stat = pokemon.stats.find(s => s.stat.name === statName);
@@ -143,7 +148,7 @@ const abilityDetails = await Promise.all(
               }} />
               
             <Image 
-            src={pokemon.sprites.front_default} 
+            src={pokemon.sprites.front_default || '/cherish-ball.png'}
             alt={pokemon.name}
             width={208}
             height={208}
