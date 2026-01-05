@@ -118,7 +118,11 @@ function PokemonListContent({ currentPage, query }: { currentPage: number; query
         return { results, total: list.count, next: list.next };
       }
     },
-    { suspense: true }
+    { suspense: true,
+      fallbackData: query
+      ? { results: [], total: 0 }
+      : { results: [], total: 0, next: null }
+    }
   );
   if (error) return <div>Error loading Pokémon.</div>;
 
