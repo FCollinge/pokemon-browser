@@ -7,7 +7,7 @@ import SearchBar from '@/components/searchbar';
 import {getPokemonList, getPokemon} from '@/lib/api/pokemon';
 import Link from 'next/link';
 import {Suspense} from 'react';
-import {Loader2} from 'lucide-react';
+import {Skeleton} from '@/components/ui/skeleton';
 
 export default async function LandingPage({ 
   searchParams 
@@ -31,12 +31,33 @@ export default async function LandingPage({
       <Suspense key={`${query}-${currentPage}`} fallback={
         <div style={{
           width: '1440px',
-          height: '1465px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+          paddingRight: '140px',
+          paddingLeft: '140px'
         }}>
-          <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
+          <div style={{
+            width: '1160px',
+            height: '40px',
+            marginBottom: '48px'
+          }}>
+            <Skeleton className="w-full h-full" />
+          </div>
+          <div style={{
+            width: '1160px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '32px'
+          }}>
+            {Array.from({ length: 12 }).map((_, i) => (
+              <Skeleton key={i} className="w-[266px] h-[391px]" />
+            ))}
+          </div>
+          <div style={{
+            width: '1160px',
+            height: '36px',
+            marginTop: '48px'
+          }}>
+            <Skeleton className="w-full h-full" />
+          </div>
         </div>
       }>
         <PokemonListContent currentPage={currentPage} query={query} />

@@ -1,42 +1,50 @@
-import { Loader2 } from 'lucide-react';
+import Hero from '@/components/hero';
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
+import {Skeleton} from '@/components/ui/skeleton';
 
 export default function LoadingDetailPage() {
   return (
-    <div style={{width: '1440px', height: '1666px', background: '#FFFFFF'}}>
-      <div style={{
-        width: '1440px', 
-        height: '80px', 
-        background: '#FFFFFF',
-        borderBottom: '1px solid black',
-        paddingLeft: '64px',
-        paddingRight: '64px',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <h1 style={{
-          fontFamily: 'Inter',
-          fontWeight: '600',
-          fontSize: '24px',
-          lineHeight: '32px',
-          color: '#181A1B'
-        }}>
-          Pokemon Browser
-        </h1>
-      </div>
-
+    <div style={{
+      background: '#FFFFFF',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '48px'
+    }}>
+      <Hero />
+      <Separator />
+      
       <div style={{
         width: '1440px',
-        height: '1225px',
-        background: '#FFFFFF',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        paddingRight: '140px',
+        paddingLeft: '140px'
       }}>
-        <Loader2 className="animate-spin" size={76} strokeWidth={1}/>
+        <div style={{
+          width: '1160px',
+          height: '40px',
+          marginBottom: '48px'
+        }}>
+          <Skeleton className="w-full h-full" />
+        </div>
+        <div style={{
+          width: '1160px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '32px'
+        }}>
+          {Array.from({ length: 12 }).map((_, i) => (
+            <Skeleton key={i} className="w-[266px] h-[391px]" />
+          ))}
+        </div>
+        <div style={{
+          width: '1160px',
+          height: '36px',
+          marginTop: '48px'
+        }}>
+          <Skeleton className="w-full h-full" />
+        </div>
       </div>
-
+      
       <Separator />
       <Footer />
     </div>

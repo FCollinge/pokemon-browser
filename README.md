@@ -246,3 +246,6 @@ So I went back to an old commit, cherry picked excluding all the UI changes and 
 And skeletons.
 
 So that's most of the blatant ui fixes. 
+
+I'll quickly do the skeleton pages upgrade from spinners.
+Took a little while but all I had to do was copy the layouts and read some more about lucide.
