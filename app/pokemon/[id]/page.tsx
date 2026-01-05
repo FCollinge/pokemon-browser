@@ -1,3 +1,4 @@
+'use client';
 import Separator from '@/components/separator';
 import Footer from '@/components/footer';
 import {getPokemon, getPokemonSpecies, getAbility} from '@/lib/api/pokemon';
@@ -9,18 +10,43 @@ import {getWeaknesses} from '@/lib/weaknesses';
 import Image from 'next/image';
 import DetailSidebarItem from '@/components/detailsidebaritem';
 import {descriptionFinder} from '@/lib/descriptions';
+import {useParams} from 'next/navigation';
+import useSWR from 'swr';
+import React from 'react';
 
-export default async function PokemonDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const pokemon = await getPokemon(id);
-  
-  let species;
-  try {
-    species = await getPokemonSpecies(id);
-  } catch {
-    species = null;
+export default function PokemonDetailPage() {
+  const params = useParams();
+  const id = params?.id as string;
+
+  const {data: pokemon, error: pokemonError} = useSWR(
+    id ? `pokemon-detail-${id.toLowerCase()}` : null,
+    () => getPokemon(id)
+  );
+  const {data: species, error: speciesError} = useSWR(
+    id ? `pokemon-species-${id.toLowerCase()}` : null,
+    () => getPokemonSpecies(id)
+  );
+
+  const [abilityDetails, setAbilityDetails] = React.useState<any[]>([]);
+  React.useEffect(() => {
+    let ignore = false;
+    if (pokemon && pokemon.abilities) {
+      Promise.all(
+        pokemon.abilities.filter((a) => !a.is_hidden).map((a) => getAbility(a.ability.name))
+      ).then((details) => {
+        if (!ignore) setAbilityDetails(details);
+      });
+    }
+    return () => { ignore = true; };
+  }, [pokemon]);
+
+  if (pokemonError || speciesError) {
+    return <div>Error loading Pokémon details.</div>;
   }
-  
+  if (!pokemon || !species) {
+    return <div>Loading...</div>;
+  }
+
   const description = species ? descriptionFinder(species.flavor_text_entries) : 'No description available.';
 
   const category = species?.genera
@@ -38,35 +64,37 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
   };
   const gender = species ? getGender(species.gender_rate) : 'Unknown';
 
-const getStatPercentage = (statName: string) => {
+  const getStatPercentage = (statName: string) => {
+    if (!pokemon || !pokemon.stats) return 0;
 const stat = pokemon.stats.find(s => s.stat.name === statName);
-return stat ? Math.round((stat.base_stat / 255) * 100) : 0;
-};
+    return stat ? Math.round((stat.base_stat / 255) * 100) : 0;
+  };
 
-const stats = [
-  { name: 'HP', key: 'hp' },
-  { name: 'Attack', key: 'attack' },
-  { name: 'Defense', key: 'defense' },
-  { name: 'Special Attack', key: 'special-attack' },
-  { name: 'Special Defense', key: 'special-defense' },
-  { name: 'Speed', key: 'speed' }
-].map(stat => ({
-  ...stat,
-  percentage: getStatPercentage(stat.key)
-}));
+  const stats = [
+    { name: 'HP', key: 'hp' },
+    { name: 'Attack', key: 'attack' },
+    { name: 'Defense', key: 'defense' },
+    { name: 'Special Attack', key: 'special-attack' },
+    { name: 'Special Defense', key: 'special-defense' },
+    { name: 'Speed', key: 'speed' }
+  ].map(stat => ({
+    ...stat,
+    percentage: getStatPercentage(stat.key)
+  }));
 
-const sidebarItems = [
-  { label: 'Height', value: `${heightInMeters}m` },
-  { label: 'Category', value: category },
-  { label: 'Weight', value: `${weightInKg} kg` },
-  { label: 'Gender', value: gender }
-];
+  const sidebarItems = [
+    { label: 'Height', value: `${heightInMeters}m` },
+    { label: 'Category', value: category },
+    { label: 'Weight', value: `${weightInKg} kg` },
+    { label: 'Gender', value: gender }
+  ];
 
-const types = pokemon.types.map(t => t.type.name);
-const weaknesses = getWeaknesses(types);
-const abilityDetails = await Promise.all(
-  pokemon.abilities.filter(a => !a.is_hidden).map(a => getAbility(a.ability.name))
-);
+const types = Array.isArray(pokemon.types)
+  ? pokemon.types
+      .filter(t => t && t.type && typeof t.type.name === 'string')
+      .map(t => t.type.name)
+  : [];
+  const weaknesses = getWeaknesses(types);
 
   return (
     <div style={{
@@ -148,18 +176,18 @@ const abilityDetails = await Promise.all(
                 top: 0,
                 left: 0
               }} />
-              
-            <Image 
-            src={pokemon.sprites.front_default || '/cherish-ball.png'}
-            alt={pokemon.name}
-            width={208}
-            height={208}
-            style={{
-                position: 'relative',
-                imageRendering: 'pixelated'
-            }}
-            unoptimized
-            />
+
+              <Image
+                src={pokemon.sprites && pokemon.sprites.front_default ? pokemon.sprites.front_default : '/cherish-ball.png'}
+                alt={pokemon.name}
+                width={208}
+                height={208}
+                style={{
+                  position: 'relative',
+                  imageRendering: 'pixelated'
+                }}
+                unoptimized
+              />
             </div>
 
             {/* Name and number */}
@@ -221,332 +249,334 @@ const abilityDetails = await Promise.all(
         flexDirection: 'column'
       }}>
         <div style={{
-        width: '1160px',
-        height: '133px',
-        gap: '28px',
-        paddingRight: '12px',
-        paddingLeft: '12px',
-        borderRadius: '12px',
-        border: '1px solid #E4E4E7',
-        background: '#F5F4F4',
-        boxShadow: '0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A',
-        display: 'flex',
-        alignItems: 'center'
+          width: '1160px',
+          height: '133px',
+          gap: '28px',
+          paddingRight: '12px',
+          paddingLeft: '12px',
+          borderRadius: '12px',
+          border: '1px solid #E4E4E7',
+          background: '#F5F4F4',
+          boxShadow: '0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A',
+          display: 'flex',
+          alignItems: 'center'
         }}>
 
-        {/* Cherish ball icon */}
-        <div style={{
-        width: '101.73px',
-        height: '97px',
-        position: 'relative',
-        flexShrink: 0
-        }}>
-        {/* Ellipse bg */}
-        <div style={{
-            width: '97.42px',
-            height: '92.89px',
-            position: 'absolute',
-            top: '2.47px',
-            left: '2.16px',
-            background: '#FFFFFF',
-            border: '1px solid #E4E4E7',
-            borderRadius: '50%'
-        }} />
-        
-        {/* cherish-ball 2 */}
-        <Image 
-        src="/cherish-ball.png"
-        alt="Cherish ball"
-        width={101.73}
-        height={97}
-        style={{
+          {/* Cherish ball icon */}
+          <div style={{
+            width: '101.73px',
+            height: '97px',
             position: 'relative',
-            imageRendering: 'pixelated'
-        }}
-        unoptimized
-        />
+            flexShrink: 0
+          }}>
+            {/* Ellipse bg */}
+            <div style={{
+              width: '97.42px',
+              height: '92.89px',
+              position: 'absolute',
+              top: '2.47px',
+              left: '2.16px',
+              background: '#FFFFFF',
+              border: '1px solid #E4E4E7',
+              borderRadius: '50%'
+            }} />
+
+            {/* cherish-ball 2 */}
+            <Image
+              src="/cherish-ball.png"
+              alt="Cherish ball"
+              width={101.73}
+              height={97}
+              style={{
+                position: 'relative',
+                imageRendering: 'pixelated'
+              }}
+              unoptimized
+            />
+          </div>
+
+          {/* Description */}
+          <div style={{
+            width: '934.27px',
+            height: '56px',
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            lineHeight: '24px',
+            color: '#181A1B',
+            display: 'flex',
+            alignItems: 'center'
+          }}>
+            {description}
+          </div>
         </div>
 
-        {/* Description */}
         <div style={{
-        width: '934.27px',
-        height: '56px',
-        fontFamily: 'Inter',
-        fontSize: '16px',
-        lineHeight: '24px',
-        color: '#181A1B',
-        display: 'flex',
-        alignItems: 'center'
+          width: '1160px',
+          height: '634px',
+          gap: '24px',
+          display: 'flex'
         }}>
-        {description}
-        </div>
-        </div>
+          {/* Left Information Sidebar (Lower Body Child) */}
+          <div style={{
+            width: '329px',
+            height: '634px',
+            gap: '32px',
+            paddingTop: '36px',
+            paddingRight: '48px',
+            paddingBottom: '36px',
+            paddingLeft: '48px',
+            borderRadius: '12px',
+            border: '1px solid #E4E4E7',
+            background: '#FFFFFF',
+            boxShadow: '0px 1px 2px 0px #0000000D',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            {sidebarItems.map((item) => (
+              <DetailSidebarItem key={item.label} label={item.label} value={item.value} />
+            ))}
+          </div>
 
-        <div style={{
-        width: '1160px',
-        height: '634px',
-        gap: '24px',
-        display: 'flex'
-        }}>
-        {/* Left Information Sidebar (Lower Body Child) */}
-        <div style={{
-        width: '329px',
-        height: '634px',
-        gap: '32px',
-        paddingTop: '36px',
-        paddingRight: '48px',
-        paddingBottom: '36px',
-        paddingLeft: '48px',
-        borderRadius: '12px',
-        border: '1px solid #E4E4E7',
-        background: '#FFFFFF',
-        boxShadow: '0px 1px 2px 0px #0000000D',
-        display: 'flex',
-        flexDirection: 'column'
-        }}>
-        {sidebarItems.map((item) => (
-        <DetailSidebarItem key={item.label} label={item.label} value={item.value} />
-        ))}
-        </div>
+          {/* Right Information Section (Child of Body) */}
+          <div style={{
+            width: '807px',
+            height: '634px',
+            gap: '24px',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            {/* Type, Weaknesses and Ability (top right section; child of body) */}
+            <div style={{
+              width: '807px',
+              height: '286px',
+              gap: '24px',
+              display: 'flex'
+            }}>
+              {/* Type and Weaknesses */}
+              <div style={{
+                width: '391.5px',
+                height: '286px',
+                gap: '32px',
+                paddingTop: '36px',
+                paddingRight: '48px',
+                paddingBottom: '36px',
+                paddingLeft: '48px',
+                borderRadius: '12px',
+                border: '1px solid #E4E4E7',
+                background: '#FFFFFF',
+                boxShadow: '0px 1px 2px 0px #0000000D',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                {/* Type */}
+                <div style={{
+                  width: '295.5px',
+                  height: '72px',
+                  gap: '12px',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  <div style={{
+                    width: '295.5px',
+                    height: '32px',
+                    fontFamily: 'Inter',
+                    fontWeight: '600',
+                    fontSize: '24px',
+                    lineHeight: '32px',
+                    letterSpacing: '-2.5%',
+                    color: '#181A1B'
+                  }}>
+                    Type
+                  </div>
+                  <div style={{
+                    width: '295.5px',
+                    height: '28px',
+                    gap: '12px',
+                    paddingTop: '4px',
+                    paddingBottom: '4px',
+                    display: 'flex'
+                  }}>
+                {pokemon.types
+                  .filter(type => type && type.type && typeof type.type.name === 'string')
+                  .map((type) => (
+                    <TypeBadge key={type.type.name} type={type.type.name} />
+                  ))}
+                  </div>
+                </div>
 
-    {/* Right Information Section (Child of Body) */}
-    <div style={{
-    width: '807px',
-    height: '634px',
-    gap: '24px',
-    display: 'flex',
-    flexDirection: 'column'
-    }}>
-    {/* Type, Weaknesses and Ability (top right section; child of body) */}
-    <div style={{
-    width: '807px',
-    height: '286px',
-    gap: '24px',
-    display: 'flex'
-    }}>
-    {/* Type and Weaknesses */}
-    <div style={{
-    width: '391.5px',
-    height: '286px',
-    gap: '32px',
-    paddingTop: '36px',
-    paddingRight: '48px',
-    paddingBottom: '36px',
-    paddingLeft: '48px',
-    borderRadius: '12px',
-    border: '1px solid #E4E4E7',
-    background: '#FFFFFF',
-    boxShadow: '0px 1px 2px 0px #0000000D',
-    display: 'flex',
-    flexDirection: 'column'
-    }}>
-    {/* Type */}
-    <div style={{
-        width: '295.5px',
-        height: '72px',
-        gap: '12px',
-        display: 'flex',
-        flexDirection: 'column'
-    }}>
-        <div style={{
-        width: '295.5px',
-        height: '32px',
-        fontFamily: 'Inter',
-        fontWeight: '600',
-        fontSize: '24px',
-        lineHeight: '32px',
-        letterSpacing: '-2.5%',
-        color: '#181A1B'
-        }}>
-        Type
-        </div>
-        <div style={{
-        width: '295.5px',
-        height: '28px',
-        gap: '12px',
-        paddingTop: '4px',
-        paddingBottom: '4px',
-        display: 'flex'
-        }}>
-        {pokemon.types.map((type) => (
-        <TypeBadge key={type.type.name} type={type.type.name} />
-        ))}
-        </div>
-    </div>
-
-    {/* Weaknesses */}
-    <div style={{
-        width: '295.5px',
-        height: '72px',
-        gap: '12px',
-        display: 'flex',
-        flexDirection: 'column'
-    }}>
-        <div style={{
-        width: '295.5px',
-        height: '32px',
-        fontFamily: 'Inter',
-        fontWeight: '600',
-        fontSize: '24px',
-        lineHeight: '32px',
-        letterSpacing: '-2.5%',
-        color: '#181A1B'
-        }}>
-        Weaknesses
-        </div>
-        <div style={{
-        width: '295.5px',
-        height: '28px',
-        gap: '12px',
-        paddingTop: '4px',
-        paddingBottom: '4px',
-        display: 'flex',
+                {/* Weaknesses */}
+                <div style={{
+                  width: '295.5px',
+                  height: '72px',
+                  gap: '12px',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  <div style={{
+                    width: '295.5px',
+                    height: '32px',
+                    fontFamily: 'Inter',
+                    fontWeight: '600',
+                    fontSize: '24px',
+                    lineHeight: '32px',
+                    letterSpacing: '-2.5%',
+                    color: '#181A1B'
+                  }}>
+                    Weaknesses
+                  </div>
+                  <div style={{
+                    width: '295.5px',
+                    height: '28px',
+                    gap: '12px',
+                    paddingTop: '4px',
+                    paddingBottom: '4px',
+                    display: 'flex',
         flexWrap: 'wrap' // Abomasnow has 7 weaknesses so we need to use this
-        }}>
+                  }}>
         {weaknesses.map((weakness) => (
-        <TypeBadge key={weakness} type={weakness} />
-        ))}
-        </div>
-    </div>
-    </div>
+                      <TypeBadge key={weakness} type={weakness} />
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-    {/* Ability */}
-    <div style={{
-        width: '391.5px',
-        height: '286px',
-        gap: '12px',
-        paddingTop: '36px',
-        paddingRight: '48px',
-        paddingBottom: '36px',
-        paddingLeft: '48px',
-        borderRadius: '12px',
-        border: '1px solid #E4E4E7',
-        background: '#FFFFFF',
-        boxShadow: '0px 1px 2px 0px #0000000D',
-        display: 'flex',
-        flexDirection: 'column'
-    }}>
-        <div style={{
-            width: '295.5px',
-            height: '32px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '32px',
-            letterSpacing: '-2.5%',
-            color: '#181A1B'
-        }}>
-        {abilityDetails.length === 2 ? 'Abilities' : 'Ability'}
-        </div>
-        <div style={{
-            width: '295.5px',
-            height: '84px',
-            fontFamily: 'Inter',
-            fontSize: '20px',
-            lineHeight: '28px',
-            letterSpacing: '0%',
-            color: '#181A1B'
-        }}>
-        {abilityDetails.map((abilityDetail, index) => {
+              {/* Ability */}
+              <div style={{
+                width: '391.5px',
+                height: '286px',
+                gap: '12px',
+                paddingTop: '36px',
+                paddingRight: '48px',
+                paddingBottom: '36px',
+                paddingLeft: '48px',
+                borderRadius: '12px',
+                border: '1px solid #E4E4E7',
+                background: '#FFFFFF',
+                boxShadow: '0px 1px 2px 0px #0000000D',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                <div style={{
+                  width: '295.5px',
+                  height: '32px',
+                  fontFamily: 'Inter',
+                  fontWeight: '600',
+                  fontSize: '24px',
+                  lineHeight: '32px',
+                  letterSpacing: '-2.5%',
+                  color: '#181A1B'
+                }}>
+                  {abilityDetails.length === 2 ? 'Abilities' : 'Ability'}
+                </div>
+                <div style={{
+                  width: '295.5px',
+                  height: '84px',
+                  fontFamily: 'Inter',
+                  fontSize: '20px',
+                  lineHeight: '28px',
+                  letterSpacing: '0%',
+                  color: '#181A1B'
+                }}>
+                  {abilityDetails.map((abilityDetail, index) => {
             const ability = pokemon.abilities.filter(a => !a.is_hidden)[index];
             const description = abilityDetail?.effect_entries
-                ?.find(entry => entry.language.name === 'en')
-                ?.short_effect || 'No description available.';
-            
-            return (
+                ?.find((entry: any) => entry.language.name === 'en')
+                        ?.short_effect || 'No description available.';
+
+                    return (
                 <div key={ability.ability.name} style={{marginBottom: index === abilityDetails.length - 1 ? '0' : '12px' }}>
-                    <div style={{ fontWeight: '400' }}>
+                        <div style={{ fontWeight: '400' }}>
                         {ability.ability.name.split('-').map(word => 
                             word.charAt(0).toUpperCase() + word.slice(1)
                         ).join(' ')}
-                    </div>
-                    <div style={{ fontWeight: '300', fontStyle: 'italic' }}>
-                        {description}
-                    </div>
+                        </div>
+                        <div style={{ fontWeight: '300', fontStyle: 'italic' }}>
+                          {description}
+                        </div>
+                      </div>
+                    );
+                  })}
+
                 </div>
-            );
-        })}
+              </div>
+            </div>
 
-</div>
-    </div>
-    </div>
-
-    {/* Statistics Chart */}
-    <div style={{
-    width: '807px',
-    height: '324px',
-    gap: '12px',
-    paddingTop: '36px',
-    paddingRight: '48px',
-    paddingBottom: '36px',
-    paddingLeft: '48px',
-    borderRadius: '12px',
-    border: '1px solid #E4E4E7',
-    background: '#FFFFFF',
-    boxShadow: '0px 1px 2px 0px #0000000D',
-    display: 'flex',
-    flexDirection: 'column'
-    }}>
-        {stats.map(stat => (
-        <StatBar key={stat.key} title={stat.name} percentage={stat.percentage} />
-        ))}
-    </div>
-    </div>
+            {/* Statistics Chart */}
+            <div style={{
+              width: '807px',
+              height: '324px',
+              gap: '12px',
+              paddingTop: '36px',
+              paddingRight: '48px',
+              paddingBottom: '36px',
+              paddingLeft: '48px',
+              borderRadius: '12px',
+              border: '1px solid #E4E4E7',
+              background: '#FFFFFF',
+              boxShadow: '0px 1px 2px 0px #0000000D',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              {stats.map(stat => (
+                <StatBar key={stat.key} title={stat.name} percentage={stat.percentage} />
+              ))}
+            </div>
+          </div>
         </div>
 
+        <div style={{
+          width: '1160px',
+          height: '36px',
+          gap: '10px'
+        }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
             <div style={{
-            width: '1160px',
-            height: '36px',
-            gap: '10px'
+              width: '144px',
+              height: '36px',
+              gap: '8px',
+              paddingTop: '8px',
+              paddingRight: '16px',
+              paddingBottom: '8px',
+              paddingLeft: '16px',
+              borderRadius: '6px',
+              background: '#181A1B',
+              boxShadow: '0px 1px 2px 0px #0000000D',
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer'
             }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-                <div style={{
-                width: '144px',
-                height: '36px',
-                gap: '8px',
-                paddingTop: '8px',
-                paddingRight: '16px',
-                paddingBottom: '8px',
-                paddingLeft: '16px',
-                borderRadius: '6px',
-                background: '#181A1B',
-                boxShadow: '0px 1px 2px 0px #0000000D',
+              <div style={{
+                width: '16px',
+                height: '16px',
+                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                cursor: 'pointer'
-                }}>
-                <div style={{
-                    width: '16px',
-                    height: '16px',
-                    position: 'relative',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <ArrowLeft style={{
-                    width: '9.33px',
-                    height: '9.33px',
-                    color: '#FAFAFA',
-                    position: 'absolute',
-                    top: '3.33px',
-                    left: '3.33px'
-                    }} />
-                </div>
-                <div style={{
-                    width: '88px',
-                    height: '20px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                    letterSpacing: '0%',
-                    color: '#FAFAFA'
-                }}>
-                    Return Home
-                </div>
-                </div>
-            </Link>
+                justifyContent: 'center'
+              }}>
+                <ArrowLeft style={{
+                  width: '9.33px',
+                  height: '9.33px',
+                  color: '#FAFAFA',
+                  position: 'absolute',
+                  top: '3.33px',
+                  left: '3.33px'
+                }} />
+              </div>
+              <div style={{
+                width: '88px',
+                height: '20px',
+                fontFamily: 'Inter',
+                fontWeight: '500',
+                fontSize: '14px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: '#FAFAFA'
+              }}>
+                Return Home
+              </div>
             </div>
+          </Link>
+        </div>
       </div>
 
       <Separator />

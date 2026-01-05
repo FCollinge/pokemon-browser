@@ -259,3 +259,17 @@ Refactoring landing page to use the hook
 That was seriously difficult and had lots of errors. I had to remove asyncs and move everything into hooks and react effects.
 Had problems with hook order and conditional returns.
 A lot of trial and error but my basic caching (on pagination) works for the home page and I can now navigate without requerying previously visited pages' data from the API.
+
+So to continue I want to implement the same caching for the detail page. In fact I think I can just prefetch the detail page data at the same time as the pokemon data (difference is detail uses .species as well).
+So I upgraded the hook to handle species. I added that the search pages should also collect the data for any potential landing page
+Lots of errors because the detail page would try and display before the target was even defined, so I added guards to prevent that.
+Note: Issues: skeletons don't work anymore. Add conditions on collecting detail data if low data mode is true (later)
+From this, navigation to detail pages are instantaneous.
+The detail pages are not instantaneous from search results yet.
+So I added the necessary info but it's still slow. It took me a while but I figured out that it's because the detail page displays on pokemon ID while the cache handles pokemon names. So all I had to do was modify that and it'll work.
+I was wrong it hasn't changed anything. I think I need to rethink a lot more stuff.
+So I have to make the cache use ID instead of name, no problem.
+Was a bit more difficult than expected, but slowly going over the mutate functions I was able to correct it.
+The cache now works exactly as intended at this stage. I'm missing a tiny bit (eg pikachu-rock-star) of error handling but I'll push this for now.
+
+What I want to do next is add the same caching to the pagination buttons because then I think I can just stack my queue on top.

@@ -13,6 +13,8 @@ import {Suspense} from 'react';
 import React from 'react';
 import {Skeleton} from '@/components/ui/skeleton';
 import {useSearchParams} from 'next/navigation';
+import {mutate} from 'swr';
+import {getPokemonSpecies} from '@/lib/api/pokemon';
 
 export default function LandingPage() {
   const searchParams = useSearchParams();
@@ -95,6 +97,9 @@ function PokemonListContent({ currentPage, query }: { currentPage: number; query
         const pokemonPromises = paginated.map(async (pokemon: any) => {
           const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
           const details = await getPokemon(id);
+          mutate(`pokemon-detail-${id}`, Promise.resolve(details), false);
+          mutate(`pokemon-species-${id}`, getPokemonSpecies(id), false);
+
           return {
             id: details.id,
             name: details.name,
@@ -130,6 +135,11 @@ function PokemonListContent({ currentPage, query }: { currentPage: number; query
             };
           })
         );
+      data.results.forEach((pokemon: any, i: number) => {
+        const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0]);
+        mutate(`pokemon-detail-${id}`, Promise.resolve(details[i]), false);
+        mutate(`pokemon-species-${id}`, getPokemonSpecies(id), false);
+      });
         if (!ignore) setDetailedList(details);
       })();
     }
