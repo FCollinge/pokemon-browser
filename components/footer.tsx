@@ -4,7 +4,6 @@ export default function Footer({ height = '244px' }: { height?: string }) {
       width: '1440px',
       height: height,
       background: '#FFFFFF',
-      borderTop: '1px solid black',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'

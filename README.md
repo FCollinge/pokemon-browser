@@ -242,3 +242,7 @@ And finally just the browser.
 
 Going to do some more work on the responsive design later but dinner break.
 
+So I went back to an old commit, cherry picked excluding all the UI changes and now I will resume where I left off. This leaves: Fixing some UI stuff (not adding support for small screens!) and the cache.
+And skeletons.
+
+So that's most of the blatant ui fixes. 

@@ -31,7 +31,7 @@ export default function PokemonCard({ id, name, image, types }: PokemonCardProps
           borderTopRightRadius: '8px'
         }}>
           <Image 
-            src={image} 
+            src={image || '/cherish-ball.png'} 
             alt={name} 
             width={266} 
             height={224} 

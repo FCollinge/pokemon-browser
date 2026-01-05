@@ -19,7 +19,12 @@ export default async function LandingPage({
   const query = params.q || '';
   
   return (
-    <div style={{ background: '#FFFFFF' }}>
+    <div style={{
+      background: '#FFFFFF',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '48px'
+     }}>
       <Hero />
       <Separator />
       
@@ -63,7 +68,7 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
       return {
         id: details.id,
         name: details.name,
-        image: details.sprites.front_default || '/cherish-ball.png',
+        image: details.sprites.front_default,
         types: details.types.map(t => t.type.name)
       };
     });
@@ -79,7 +84,7 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
       return {
         id: details.id,
         name: details.name,
-        image: details.sprites.front_default || '/cherish-ball.png',
+        image: details.sprites.front_default,
         types: details.types.map(t => t.type.name)
       };
     });
@@ -95,10 +100,11 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
     }}>
       <div style={{
         width: '1440px',
-        height: '1465px',
         gap: '48px',
         paddingRight: '140px',
-        paddingLeft: '140px'
+        paddingLeft: '140px',
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         <div style={{
           width: '1160px',
@@ -133,7 +139,6 @@ async function PokemonListContent({ currentPage, query }: { currentPage: number;
 
         <div style={{
           width: '1160px',
-          height: '1293px',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '32px'

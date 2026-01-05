@@ -73,7 +73,9 @@ const abilityDetails = await Promise.all(
       width: '1440px',
       height: '1704px',
       gap: '48px',
-      background: '#FFFFFF'
+      background: '#FFFFFF',
+      display: 'flex',
+      flexDirection: 'column'
     }}>
       <div style={{
         width: '1440px',
@@ -214,7 +216,9 @@ const abilityDetails = await Promise.all(
         height: '883px',
         gap: '40px',
         paddingRight: '140px',
-        paddingLeft: '140px'
+        paddingLeft: '140px',
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         <div style={{
         width: '1160px',
