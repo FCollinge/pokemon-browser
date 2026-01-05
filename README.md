@@ -281,3 +281,12 @@ So I built a simple queue system.
 Doing the other functions though is a real head scratcher. I don't really know if I should be using .shift because I'm scared it will make wiring it into the website harder. Probably not in terms of priority reversal but at least I'm worried that it'll be subject to race conditions.
 I'm just going to use .shift and wire it in and hopefully it'll work.
 
+I'm extremely confused in how wire it at this point.
+Because on top of that the caching I've built in doesn't seem to work as I expect it to.
+So it seems it's because I'm remounting which clears memory. There's also other weird bugs with the cache like it'll recover if you use browser alt + arrow while offline but then crash to "no internet connection" as soon as it's done loading 
+
+I have to move the cache to an external db. SWR should be able to handle this for me.
+
+SWR told me to wrap the layout in SWR config with my storage.
+
+Took a little while but I ironed it out. I had had trouble with mixing up server side and client side.
