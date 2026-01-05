@@ -176,7 +176,7 @@ So I had a quick think about the cache and I've realised that per the assignment
 I had misunderstood "rendering dynamically" as dynamically fetching.
 Logically this would make the website extremely fast (and eliminate loaders/skeletons almost entirely) for anyone with a modern average internet speed, and wouldn't affect people with a slower connection. It would be bad for people using cellular data though.
 
-So I've come to the conclusion that for the cache I want, on request of a page of the website (because I can access any page number from the aaddress), I should fetch the data required to display it (starting with pokemon list) and then build a queue do fetch every single piece of data I will need, bumping the priority for the pages currentPage+-1 as they are the most likely next visits as well as bumping any other data (for example search results which would be against the already queried pokemon list) to the top of the queue.
+So I've come to the conclusion that for the cache I want, on request of a page of the website (because I can access any page number from the aaddress), I should fetch the data required to display it (starting with pokemon list) and then build a queue to fetch every single piece of data I will need, bumping the priority for the pages currentPage+-1 as they are the most likely next visits as well as bumping any other data (for example search results which would be against the already queried pokemon list) to the top of the queue.
 
 The final thought on this was that as I wrote just above it would be bad for people using cellular data, but apparently there's a way to collect that data from the user's client info on certain browsers. I've read that the standard is to check for that otherwise fallback on the data efficient version.
 
@@ -272,4 +272,12 @@ So I have to make the cache use ID instead of name, no problem.
 Was a bit more difficult than expected, but slowly going over the mutate functions I was able to correct it.
 The cache now works exactly as intended at this stage. I'm missing a tiny bit (eg pikachu-rock-star) of error handling but I'll push this for now.
 
-What I want to do next is add the same caching to the pagination buttons because then I think I can just stack my queue on top.
+What I want to do next is add the same caching to the pagination buttons because then I think I can just stack my queue on top. I'm unsure of how I'm going to figure this out.
+
+So I think I definitely I should build the queue first. I'll make it such that the queue is initialised upon visit to the site. The first element is the data required to view the requested page. After that the data to render all accessible pages from there through pagination (everything bar search) in a cascading motion. I should have the option to lock the queue and inject items at the start (either the missing data to display a search).
+Ideally the data shouldn't be downloading as fast as possible all of the time. For example, I would rather only download the pokemon data and avoid species data until it's possible for me to click on the detail (or rather, do that at the expense of getting a slower average search duration)
+
+So I built a simple queue system.
+Doing the other functions though is a real head scratcher. I don't really know if I should be using .shift because I'm scared it will make wiring it into the website harder. Probably not in terms of priority reversal but at least I'm worried that it'll be subject to race conditions.
+I'm just going to use .shift and wire it in and hopefully it'll work.
+
