@@ -249,3 +249,13 @@ So that's most of the blatant ui fixes.
 
 I'll quickly do the skeleton pages upgrade from spinners.
 Took a little while but all I had to do was copy the layouts and read some more about lucide.
+
+Onto the cache. I will use SWR for this, installable with npm
+
+Created a hook for the pokemon list.
+
+Refactoring landing page to use the hook
+
+That was seriously difficult and had lots of errors. I had to remove asyncs and move everything into hooks and react effects.
+Had problems with hook order and conditional returns.
+A lot of trial and error but my basic caching (on pagination) works for the home page and I can now navigate without requerying previously visited pages' data from the API.
