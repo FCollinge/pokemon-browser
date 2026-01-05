@@ -290,3 +290,20 @@ I have to move the cache to an external db. SWR should be able to handle this fo
 SWR told me to wrap the layout in SWR config with my storage.
 
 Took a little while but I ironed it out. I had had trouble with mixing up server side and client side.
+
+Frankly I think this is going to be just too difficult. I know too little about every single tool I'm using to be able to write this efficiently. I'm worried it will be the same result as yesterday, spending countless hours for very little progress. I will just fix my skeletons have a last look at my note and then I will do the final writeup
+
+Skeletons are done, it was very difficult because since I implemented caching I made the code that much more difficult to understand, but the point was I ditched .useEffect for SWR everywhere.
+
+I briefly considered writing the caching for the pagination buttons but I realised that that would have no effect on website speed:
+If i'm on page 2 and need to download page 4 to go to page 3, it won't make it any faster.
+Of course the system I described would have solved it but I'm just too unexperienced for this complexity. Async functions would have been fine and I would also have been fine if the cache was one of the first things I built.
+
+All in all, the website is extremely fast. There's a few problems with the figma but it's already monday evening so I'm going to do the write up and submit now.
+
+If I had more time I would've:
+Refactored everything to be able to implement the cache properly
+Fix some UI (eg pokemonCard may have issues)
+Add more error handling (some pokemon just won't display a detail page)
+
+But I think I did a good enough job for a first go round, although I should have been more prepared to restart as I learned stuff as I went along.
